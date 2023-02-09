@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Title" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0
+color = Color( 0.305882, 0.415686, 0.329412, 1 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0
+theme = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="AspectRatioContainer"]
+follow_viewport_enable = true
+
+[node name="Label" type="Label" parent="AspectRatioContainer"]
+margin_top = 336.0
+margin_right = 480.0
+margin_bottom = 384.0
+text = "21 - Tic - Tac - Toe
+
+by Ethan Lew, Kyle Whynott, and Ugo Ndupu"
+align = 1
+uppercase = true
