@@ -13,7 +13,7 @@ resource_name = "LogoBounce"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_right")
+tracks/0/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_right")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 50, 100 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_left")
+tracks/1/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_left")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [ 50, 100 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_top")
+tracks/2/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_top")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ 50, 100 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_bottom")
+tracks/3/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_bottom")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -64,7 +64,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_right")
+tracks/0/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_right")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_left")
+tracks/1/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_left")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -88,7 +88,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_top")
+tracks/2/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_top")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -100,7 +100,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_bottom")
+tracks/3/path = NodePath("MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer:custom_constants/margin_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -119,22 +119,23 @@ font_path = "res://Assets/Fonts/OpenSans-VariableFont_wdth,wght.ttf"
 size = 36
 font_data = SubResource( 3 )
 
-[node name="Title" type="Node"]
+[node name="Root" type="Node"]
 script = ExtResource( 2 )
 
-[node name="MainMenuBG" type="ColorRect" parent="."]
+[node name="ColorRectBackground" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.709804, 0.709804, 0.709804, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="MainMenuAnimationPlayer" type="AnimationPlayer" parent="MainMenu"]
+root_node = NodePath("../..")
 autoplay = "LogoBounce"
 anims/LogoBounce = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -144,13 +145,13 @@ margin_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MainMenuContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="MainMenuContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
 margin_right = 980.0
 margin_bottom = 1820.0
 size_flags_horizontal = 3
 custom_constants/separation = 50
 
-[node name="LogoMarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/MainMenuContainer"]
+[node name="LogoMarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/MainMenuContainer"]
 margin_right = 980.0
 margin_bottom = 835.0
 size_flags_horizontal = 3
@@ -160,24 +161,24 @@ custom_constants/margin_top = 0
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
-[node name="Logo" type="TextureRect" parent="CanvasLayer/MarginContainer/MainMenuContainer/LogoMarginContainer"]
-margin_left = 72.0
-margin_top = 90.0
-margin_right = 908.0
-margin_bottom = 745.0
+[node name="Logo" type="TextureRect" parent="MainMenu/MarginContainer/MainMenuContainer/LogoMarginContainer"]
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 924.0
+margin_bottom = 779.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MainMenuContainer"]
+[node name="ButtonsHBox" type="HBoxContainer" parent="MainMenu/MarginContainer/MainMenuContainer"]
 margin_top = 885.0
 margin_right = 980.0
 margin_bottom = 1720.0
 size_flags_vertical = 3
 
-[node name="StartButtonCard" type="TextureButton" parent="CanvasLayer/MarginContainer/MainMenuContainer/ButtonsHBox"]
+[node name="StartButtonCard" type="TextureButton" parent="MainMenu/MarginContainer/MainMenuContainer/ButtonsHBox"]
 margin_right = 488.0
 margin_bottom = 835.0
 size_flags_horizontal = 3
@@ -187,7 +188,7 @@ texture_hover = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
-[node name="OptionsButtonCard" type="TextureButton" parent="CanvasLayer/MarginContainer/MainMenuContainer/ButtonsHBox"]
+[node name="OptionsButtonCard" type="TextureButton" parent="MainMenu/MarginContainer/MainMenuContainer/ButtonsHBox"]
 margin_left = 492.0
 margin_right = 980.0
 margin_bottom = 835.0
@@ -198,7 +199,7 @@ texture_hover = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="Version Label" type="Label" parent="CanvasLayer/MarginContainer/MainMenuContainer"]
+[node name="Version Label" type="Label" parent="MainMenu/MarginContainer/MainMenuContainer"]
 margin_top = 1770.0
 margin_right = 980.0
 margin_bottom = 1820.0
@@ -207,5 +208,5 @@ custom_fonts/font = SubResource( 4 )
 text = "version x.y.z"
 align = 1
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MainMenuContainer/ButtonsHBox/StartButtonCard" to="." method="_on_StartButtonCard_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/MainMenuContainer/ButtonsHBox/OptionsButtonCard" to="." method="_on_OptionsButtonCard_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/MainMenuContainer/ButtonsHBox/StartButtonCard" to="." method="_on_StartButtonCard_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/MainMenuContainer/ButtonsHBox/OptionsButtonCard" to="." method="_on_OptionsButtonCard_pressed"]
