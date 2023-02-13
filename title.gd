@@ -22,4 +22,4 @@ func _on_StartButtonCard_pressed():
 
 
 func _on_OptionsButtonCard_pressed():
-	OS.alert("Options Button Pressed", "_on_OptionsButtonCard_pressed()")
+	_transition_rect.transition_to("res://Options.tscn")

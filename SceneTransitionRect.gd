@@ -27,3 +27,4 @@ func transition_to(_next_scene := next_scene_path):
 	
 	# Change to the selected scene
 	get_tree().change_scene(_next_scene)
+
