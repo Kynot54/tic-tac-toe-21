@@ -5,11 +5,6 @@
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TwentyOne.gd" type="Script" id=4]
 
-[node name="TwentyOne" type="Node"]
-script = ExtResource( 4 )
-
-[gd_scene load_steps=2 format=2]
-
 [ext_resource path="res://TwentyOne.gd" type="Script" id=1]
 
 [node name="TwentyOne" type="Node"]
