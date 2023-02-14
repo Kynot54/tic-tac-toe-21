@@ -5,7 +5,6 @@ on:
 
 env:
   GODOT_VERSION: 3.5.1
-  PROJECT_PATH: .
   
 jobs:
   export-web:
@@ -25,7 +24,6 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          cd $PROJECT_PATH
           godot -v --export "HTML5" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
