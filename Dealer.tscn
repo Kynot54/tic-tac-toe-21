@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="TwentyOne" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0
+color = Color( 0.305882, 0.415686, 0.329412, 1 )
+
+[node name="PointCountLabel" type="RichTextLabel" parent="."]
+margin_left = 69.0
+margin_top = 596.0
+margin_right = 128.0
+margin_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 6, 6 )
+text = "Score: 21"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+margin_left = 1.52588e-05
+margin_top = 3.05176e-05
+margin_right = 480.0
+margin_bottom = 720.0
