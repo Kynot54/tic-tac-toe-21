@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TicTac.gd" type="Script" id=1]
+[ext_resource path="res://Assets/TitleTheme.tres" type="Theme" id=2]
 
 [node name="TicTac" type="Node"]
 script = ExtResource( 1 )
@@ -12,3 +13,103 @@ color = Color( 0.709804, 0.709804, 0.709804, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 200
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 100
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 1030.0
+margin_bottom = 1820.0
+
+[node name="TicTacToeGrid" type="GridContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 468.0
+margin_top = 648.0
+margin_right = 512.0
+margin_bottom = 971.0
+theme = ExtResource( 2 )
+columns = 3
+
+[node name="0Buton" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_right = 12.0
+margin_bottom = 105.0
+
+[node name="1Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 105.0
+
+[node name="2Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 105.0
+
+[node name="3Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_top = 109.0
+margin_right = 12.0
+margin_bottom = 214.0
+
+[node name="4Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 16.0
+margin_top = 109.0
+margin_right = 28.0
+margin_bottom = 214.0
+
+[node name="5Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 32.0
+margin_top = 109.0
+margin_right = 44.0
+margin_bottom = 214.0
+
+[node name="6Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_top = 218.0
+margin_right = 12.0
+margin_bottom = 323.0
+
+[node name="7Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 16.0
+margin_top = 218.0
+margin_right = 28.0
+margin_bottom = 323.0
+
+[node name="8Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
+margin_left = 32.0
+margin_top = 218.0
+margin_right = 44.0
+margin_bottom = 323.0
+
+[node name="DEBUGChangePlayerButton" type="Button" parent="."]
+margin_left = 284.0
+margin_top = 33.0
+margin_right = 773.0
+margin_bottom = 138.0
+theme = ExtResource( 2 )
+text = "Change Player"
+
+[node name="DEBUGCurrentPlayerLabel" type="Label" parent="."]
+margin_left = 226.0
+margin_top = 267.0
+margin_right = 870.0
+margin_bottom = 366.0
+theme = ExtResource( 2 )
+text = "current player here"
+
+[node name="DEBUGResetButton" type="Button" parent="."]
+margin_left = 424.0
+margin_top = 145.0
+margin_right = 620.0
+margin_bottom = 250.0
+theme = ExtResource( 2 )
+text = "Reset"
+
+[connection signal="pressed" from="DEBUGChangePlayerButton" to="." method="_on_DEBUGChangePlayerButton_pressed"]
+[connection signal="pressed" from="DEBUGResetButton" to="." method="_on_DEBUGResetButton_pressed"]
