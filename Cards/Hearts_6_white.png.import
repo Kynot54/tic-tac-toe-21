@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Heats_6_white.png-0d11cff2c5046054fafe6504f6ba03cb.stex"
+path="res://.import/Hearts_6_white.png-8b5e2070b440bfe50ab6e18132a0b15d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cards/Heats_6_white.png"
-dest_files=[ "res://.import/Heats_6_white.png-0d11cff2c5046054fafe6504f6ba03cb.stex" ]
+source_file="res://Cards/Hearts_6_white.png"
+dest_files=[ "res://.import/Hearts_6_white.png-8b5e2070b440bfe50ab6e18132a0b15d.stex" ]
 
 [params]
 

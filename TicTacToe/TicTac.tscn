@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TicTacToe/TicTac.gd" type="Script" id=1]
+
+[node name="TicTac" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0
+color = Color( 0.305882, 0.415686, 0.329412, 1 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0

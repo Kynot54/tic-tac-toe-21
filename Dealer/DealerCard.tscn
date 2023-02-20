@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Globals/SceneTransitionRect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Dealer/DealerCard.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Images/PlayerButton.svg" type="Texture" id=3]
+[ext_resource path="res://Dealer/DealerMarginContainer.gd" type="Script" id=4]
+
+[node name="Dealer" type="Node"]
+script = ExtResource( 2 )
+
+[node name="ColorRectBackground" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.709804, 0.709804, 0.709804, 1 )
+
+[node name="DealerMarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DealerMarginContainer"]
+margin_right = 980.0
+margin_bottom = 1820.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+
+[node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/VBoxContainer"]
+margin_right = 980.0
+margin_bottom = 201.0
+action_mode = 0
+texture_normal = ExtResource( 3 )
+
+[node name="DealerScore" type="Label" parent="DealerMarginContainer"]
+margin_top = 903.0
+margin_right = 980.0
+margin_bottom = 917.0
+text = "Score: 0"
+
+[node name="SceneTransitionRect" parent="." instance=ExtResource( 1 )]
+margin_left = -1.0
+margin_top = 2.0
+margin_right = -1.0
+margin_bottom = 2.0
+
+[connection signal="pressed" from="DealerMarginContainer/VBoxContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]
