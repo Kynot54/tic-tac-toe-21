@@ -39,26 +39,30 @@ func _ready():
 func on_grid_button_pressed(button, position):	
 	var grid_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	
+	print(position)
+	
 	if self.round_state == RoundState.PLAYER_1_PICKING:
 		button.disabled = true
 		turns += 1
 		grid_squares[position].set_texture(x_image)
+		grid_squares[position].expand = true
 		player_1_squares.append(position)
 		
 		if self.check_for_win(player_1_squares):
-			$DEBUGChangePlayerButton.disabled = true
-			$DEBUGCurrentPlayerLabel.text = "Player 1 Win"
+			$DebugItemsVBox/DEBUGChangePlayerButton.disabled = true
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 1 Win"
 			self.game_state = TicTacToeState.PLAYER_1_WIN
 			self.round_state = RoundState.IDLE
 	elif self.round_state == RoundState.PLAYER_2_PICKING:
 		button.disabled = true
 		turns += 1
 		grid_squares[position].set_texture(o_image)
+		grid_squares[position].expand = true
 		player_2_squares.append(position)
 		
 		if self.check_for_win(player_2_squares):
-			$DEBUGChangePlayerButton.disabled = true
-			$DEBUGCurrentPlayerLabel.text = "Player 2 Win"
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.disabled = true
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 2 Win"
 			self.game_state = TicTacToeState.PLAYER_2_WIN
 			self.round_state = RoundState.IDLE
 	
@@ -82,8 +86,8 @@ func check_for_win(squares):
 		
 func reset_grid():
 	var buttons = $MarginContainer/CenterContainer/TicTacToeGrid.get_children()
-	$DEBUGCurrentPlayerLabel.text = "Idle (No Player Turn)"
-	$DEBUGChangePlayerButton.disabled = false
+	$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Idle (No Player Turn)"
+	$DebugItemsVBox/DEBUGChangePlayerButton.disabled = false
 	
 	for button in buttons:
 		button.disabled = false
@@ -103,13 +107,13 @@ func _on_DEBUGChangePlayerButton_pressed():
 	match self.round_state:
 		RoundState.IDLE:
 			self.round_state = RoundState.PLAYER_1_PICKING
-			$DEBUGCurrentPlayerLabel.text = "Player 1 Turn"
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 1 Turn"
 		RoundState.PLAYER_1_PICKING:
 			self.round_state = RoundState.PLAYER_2_PICKING
-			$DEBUGCurrentPlayerLabel.text = "Player 2 Turn"
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 2 Turn"
 		RoundState.PLAYER_2_PICKING:
 			self.round_state = RoundState.PLAYER_1_PICKING
-			$DEBUGCurrentPlayerLabel.text = "Player 1 Turn"
+			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 1 Turn"
 	
 	
 
