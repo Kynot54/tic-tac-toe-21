@@ -18,6 +18,7 @@ export var game_state = TicTacToeState.IN_PROGRESS
 export var round_state = RoundState.IDLE
 var player_1_squares = []
 var player_2_squares = []
+var turns = 0
 
 onready var x_image = load("res://Assets/Images/red-o.png")
 onready var o_image= load("res://Assets/Images/blue-x.png")
@@ -36,10 +37,11 @@ func _ready():
 #	pass
 
 func on_grid_button_pressed(button, position):	
-	var grid_squares = $GridContainer.get_children()
-	button.disabled = true
+	var grid_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	
 	if self.round_state == RoundState.PLAYER_1_PICKING:
+		button.disabled = true
+		turns += 1
 		grid_squares[position].set_texture(x_image)
 		player_1_squares.append(position)
 		
@@ -49,6 +51,8 @@ func on_grid_button_pressed(button, position):
 			self.game_state = TicTacToeState.PLAYER_1_WIN
 			self.round_state = RoundState.IDLE
 	elif self.round_state == RoundState.PLAYER_2_PICKING:
+		button.disabled = true
+		turns += 1
 		grid_squares[position].set_texture(o_image)
 		player_2_squares.append(position)
 		
@@ -57,7 +61,11 @@ func on_grid_button_pressed(button, position):
 			$DEBUGCurrentPlayerLabel.text = "Player 2 Win"
 			self.game_state = TicTacToeState.PLAYER_2_WIN
 			self.round_state = RoundState.IDLE
-		
+	
+	if turns == 9:
+		self.game_state = TicTacToeState.TIE
+		self.round_state = RoundState.IDLE
+	
 
 func check_for_win(squares):
 	var win_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
@@ -81,7 +89,7 @@ func reset_grid():
 		button.disabled = false
 		
 		
-	var image_squares = $GridContainer.get_children()
+	var image_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	for square in image_squares:
 		square.texture = null
 		
