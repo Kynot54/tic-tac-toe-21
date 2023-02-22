@@ -39,8 +39,6 @@ func _ready():
 func on_grid_button_pressed(button, position):	
 	var grid_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	
-	print(position)
-	
 	if self.round_state == RoundState.PLAYER_1_PICKING:
 		button.disabled = true
 		turns += 1
