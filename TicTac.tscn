@@ -32,60 +32,69 @@ margin_right = 1030.0
 margin_bottom = 1820.0
 
 [node name="TicTacToeGrid" type="GridContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 468.0
+margin_left = 406.0
 margin_top = 648.0
-margin_right = 512.0
+margin_right = 573.0
 margin_bottom = 971.0
 theme = ExtResource( 2 )
 columns = 3
 
 [node name="0Buton" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_right = 12.0
+margin_right = 53.0
 margin_bottom = 105.0
+text = "0"
 
 [node name="1Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 16.0
-margin_right = 28.0
+margin_left = 57.0
+margin_right = 110.0
 margin_bottom = 105.0
+text = "1"
 
 [node name="2Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 32.0
-margin_right = 44.0
+margin_left = 114.0
+margin_right = 167.0
 margin_bottom = 105.0
+text = "2"
 
 [node name="3Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
 margin_top = 109.0
-margin_right = 12.0
+margin_right = 53.0
 margin_bottom = 214.0
+text = "3"
 
 [node name="4Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 16.0
+margin_left = 57.0
 margin_top = 109.0
-margin_right = 28.0
+margin_right = 110.0
 margin_bottom = 214.0
+text = "4"
 
 [node name="5Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 32.0
+margin_left = 114.0
 margin_top = 109.0
-margin_right = 44.0
+margin_right = 167.0
 margin_bottom = 214.0
+text = "5"
 
 [node name="6Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
 margin_top = 218.0
-margin_right = 12.0
+margin_right = 53.0
 margin_bottom = 323.0
+text = "6"
 
 [node name="7Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 16.0
+margin_left = 57.0
 margin_top = 218.0
-margin_right = 28.0
+margin_right = 110.0
 margin_bottom = 323.0
+text = "7"
 
 [node name="8Button" type="Button" parent="MarginContainer/CenterContainer/TicTacToeGrid"]
-margin_left = 32.0
+margin_left = 114.0
 margin_top = 218.0
-margin_right = 44.0
+margin_right = 167.0
 margin_bottom = 323.0
+text = "8"
 
 [node name="DEBUGChangePlayerButton" type="Button" parent="."]
 margin_left = 284.0
@@ -110,6 +119,57 @@ margin_right = 620.0
 margin_bottom = 250.0
 theme = ExtResource( 2 )
 text = "Reset"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 299.0
+margin_top = 361.0
+margin_right = 769.0
+margin_bottom = 831.0
+columns = 3
+
+[node name="0Texture" type="TextureRect" parent="GridContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+
+[node name="1Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 4.0
+margin_right = 4.0
+
+[node name="2Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 8.0
+margin_right = 8.0
+
+[node name="3Texture" type="TextureRect" parent="GridContainer"]
+margin_top = 4.0
+margin_bottom = 4.0
+
+[node name="4Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
+
+[node name="5Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 8.0
+margin_bottom = 4.0
+
+[node name="6Texture" type="TextureRect" parent="GridContainer"]
+margin_top = 8.0
+margin_bottom = 8.0
+
+[node name="7Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = 4.0
+margin_bottom = 8.0
+
+[node name="8Texture" type="TextureRect" parent="GridContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
 
 [connection signal="pressed" from="DEBUGChangePlayerButton" to="." method="_on_DEBUGChangePlayerButton_pressed"]
 [connection signal="pressed" from="DEBUGResetButton" to="." method="_on_DEBUGResetButton_pressed"]

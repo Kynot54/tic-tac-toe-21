@@ -19,6 +19,9 @@ export var round_state = RoundState.IDLE
 var player_1_squares = []
 var player_2_squares = []
 
+onready var x_image = load("res://Assets/Images/red-o.png")
+onready var o_image= load("res://Assets/Images/blue-x.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var buttons = $MarginContainer/CenterContainer/TicTacToeGrid.get_children()
@@ -27,15 +30,17 @@ func _ready():
 		buttons[i].connect("pressed", self, "on_grid_button_pressed", [buttons[i], i])
 	
 	self.reset_grid()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func on_grid_button_pressed(button, position):	
+	var grid_squares = $GridContainer.get_children()
+	button.disabled = true
+	
 	if self.round_state == RoundState.PLAYER_1_PICKING:
-		button.text = "X"
+		grid_squares[position].set_texture(x_image)
 		player_1_squares.append(position)
 		
 		if self.check_for_win(player_1_squares):
@@ -44,7 +49,7 @@ func on_grid_button_pressed(button, position):
 			self.game_state = TicTacToeState.PLAYER_1_WIN
 			self.round_state = RoundState.IDLE
 	elif self.round_state == RoundState.PLAYER_2_PICKING:
-		button.text = "O"
+		grid_squares[position].set_texture(o_image)
 		player_2_squares.append(position)
 		
 		if self.check_for_win(player_2_squares):
@@ -72,8 +77,13 @@ func reset_grid():
 	$DEBUGCurrentPlayerLabel.text = "Idle (No Player Turn)"
 	$DEBUGChangePlayerButton.disabled = false
 	
-	for i in buttons.size():
-		buttons[i].text = String(i)
+	for button in buttons:
+		button.disabled = false
+		
+		
+	var image_squares = $GridContainer.get_children()
+	for square in image_squares:
+		square.texture = null
 		
 	player_1_squares = []
 	player_2_squares = []
