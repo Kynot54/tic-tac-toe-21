@@ -17,6 +17,7 @@ run/main_scene="res://Title/Main.tscn"
 
 Deck="*res://Globals/Deck.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
+Transit="*res://addons/transit/Transit.tscn"
 
 [display]
 
