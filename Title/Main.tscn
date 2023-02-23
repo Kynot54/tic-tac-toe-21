@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/TitleTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/start-card-glow.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Images/options-card-shadow.png" type="Texture" id=3]
-[ext_resource path="res://Globals/SceneTransitionRect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Title/title.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Images/logo-with-credit-subtitle.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Images/start-card-shadow.png" type="Texture" id=7]
@@ -203,8 +202,6 @@ theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 4 )
 text = "version x.y.z"
 align = 1
-
-[node name="SceneTransitionRect" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/StartButtonCard" to="." method="_on_StartButtonCard_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/OptionsButtonCard" to="." method="_on_OptionsButtonCard_pressed"]

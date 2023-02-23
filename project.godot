@@ -17,6 +17,7 @@ run/main_scene="res://Title/Main.tscn"
 
 Deck="*res://Globals/Deck.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
+Transit="*res://addons/transit/Transit.tscn"
 
 [display]
 
@@ -26,6 +27,10 @@ window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
 
 [global]
 

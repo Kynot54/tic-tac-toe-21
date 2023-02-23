@@ -4,8 +4,6 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var _transition_rect := $SceneTransitionRect
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,4 +16,5 @@ func _ready():
 
 
 func _on_Button_pressed():
-	_transition_rect.transition_to("res://Title/Main.tscn")
+	Transit.change_scene("res://Title/Main.tscn")
+	pass
