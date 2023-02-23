@@ -2,8 +2,6 @@ extends Node
 
 # app semver
 var version = "0.0.1"
-onready var _transition_rect := $SceneTransitionRect
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +14,10 @@ func _ready():
 
 
 func _on_StartButtonCard_pressed():
-	_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+	#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+	pass
 
 
 func _on_OptionsButtonCard_pressed():
-	_transition_rect.transition_to("res://Options/Options.tscn")
+	#_transition_rect.transition_to("res://Options/Options.tscn")
+	pass

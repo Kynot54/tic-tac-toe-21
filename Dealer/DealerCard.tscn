@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Globals/SceneTransitionRect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Dealer/DealerCard.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/PlayerButton.svg" type="Texture" id=3]
 [ext_resource path="res://Dealer/DealerMarginContainer.gd" type="Script" id=4]
@@ -42,11 +41,5 @@ margin_top = 903.0
 margin_right = 980.0
 margin_bottom = 917.0
 text = "Score: 0"
-
-[node name="SceneTransitionRect" parent="." instance=ExtResource( 1 )]
-margin_left = -1.0
-margin_top = 2.0
-margin_right = -1.0
-margin_bottom = 2.0
 
 [connection signal="pressed" from="DealerMarginContainer/VBoxContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]

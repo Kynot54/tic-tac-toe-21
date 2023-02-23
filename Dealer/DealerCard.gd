@@ -1,7 +1,5 @@
 extends Node
 
-onready var _transition_rect := $SceneTransitionRect
-
 onready var deck = Deck.deck
 onready var dealer_score = Deck.dealer_score
 
@@ -34,7 +32,8 @@ func deal_dealer_card():
 		$DealerMarginContainer/.add_child(card_sprite)
 
 func _on_PlayerButton_pressed():
-	_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+	#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+	pass
 		
 func reset_dealer_deck():
 	for card in dealer_hand:
@@ -54,9 +53,10 @@ func determine_player_actions():
 			pass
 	if end == true:
 		if player_score > dealer_score and !(player_score > 21):
-			_transition_rect.transition_to("res://TicTacToe/TicTac.tscn")
+			#_transition_rect.transition_to("res://TicTacToe/TicTac.tscn")
+			pass
 		elif player_score == dealer_score:
 			reset_dealer_score()
 			reset_dealer_deck()
 			new_round == true
-			_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+			#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
