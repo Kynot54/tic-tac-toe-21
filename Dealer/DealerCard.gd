@@ -32,7 +32,7 @@ func deal_dealer_card():
 		$DealerMarginContainer/.add_child(card_sprite)
 
 func _on_PlayerButton_pressed():
-	#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+	Transit.change_scene("res://Player/PlayerCard.tscn")
 	pass
 		
 func reset_dealer_deck():
@@ -53,10 +53,9 @@ func determine_player_actions():
 			pass
 	if end == true:
 		if player_score > dealer_score and !(player_score > 21):
-			#_transition_rect.transition_to("res://TicTacToe/TicTac.tscn")
-			pass
+			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		elif player_score == dealer_score:
 			reset_dealer_score()
 			reset_dealer_deck()
 			new_round == true
-			#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
+			Transit.change_scene("res://Player/PlayerCard.tscn")

@@ -41,22 +41,22 @@ func _on_Hit_pressed():
 	if player_score > 21:
 		Deck.is_end =  true
 		save_scene()
-		#_transition_rect.transition_to("res://Dealer/DealerCard.tscn")
+		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	elif player_score == 21:
 		Deck.is_end = true
 		save_scene()
-		#_transition_rect.transition_to("res://Dealer/DealerCard.tscn")
+		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	else:
 		pass
 		
 func _on_Stand_pressed():
 	end = true
 	save_scene()
-	#_transition_rect.transition_to("res://Dealer/DealerCard.tscn")
+	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
 	save_scene()
-	#_transition_rect.transition_to("res://Dealer/DealerCard.tscn")
+	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func reset_player_deck():
 	for card in player_hand:

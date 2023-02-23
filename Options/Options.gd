@@ -16,5 +16,5 @@ func _ready():
 
 
 func _on_Button_pressed():
-	# _transition_rect.transition_to("res://Title/Main.tscn")
+	Transit.change_scene("res://Title/Main.tscn")
 	pass

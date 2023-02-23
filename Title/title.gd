@@ -14,10 +14,8 @@ func _ready():
 
 
 func _on_StartButtonCard_pressed():
-	#_transition_rect.transition_to("res://Player/PlayerCard.tscn")
-	pass
+	Transit.change_scene("res://Player/PlayerCard.tscn")
 
 
 func _on_OptionsButtonCard_pressed():
-	#_transition_rect.transition_to("res://Options/Options.tscn")
-	pass
+	Transit.change_scene("res://Options/Options.tscn")
