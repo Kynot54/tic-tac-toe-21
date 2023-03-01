@@ -138,7 +138,7 @@ func cpu_pick_square():
 				return
 				
 			# if this move will block a player win
-			elif sequence_sum == 2:
+			elif sequence_sum == block_sum:
 				var pos = sequence_values.find(0)
 				board[sequence[pos]] = 10
 				buttons[sequence[pos]].emit_signal("pressed")
