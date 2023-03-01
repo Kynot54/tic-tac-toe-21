@@ -55,7 +55,7 @@ func on_grid_button_pressed(button, position):
 		# Add the x to the board value array
 		board[position] = player_1_value
 		
-		if self.check_for_win():
+		if self.check_for_win(0):
 			self.emit_signal("onPlayer_1_win")
 			self.game_state = TicTacToeState.PLAYER_1_WIN
 			self.round_state = RoundState.IDLE
@@ -71,7 +71,7 @@ func on_grid_button_pressed(button, position):
 		# Add the o to the board value array
 		board[position] = player_2_value
 		
-		if self.check_for_win():
+		if self.check_for_win(1):
 			self.emit_signal("onPlayer_2_win")
 			self.game_state = TicTacToeState.PLAYER_2_WIN
 			self.round_state = RoundState.IDLE
@@ -99,23 +99,44 @@ func cpu_pick_square():
 	var row_vertical = [[0, 3, 6], [1,6,7], [2,5,8]]
 	var row_diagonal = [[0,4,8], [2,4,6]]
 	
-	self.round_state = RoundState.PLAYER_2_PICKING
+	var win_sum = 0
+	var block_sum = 0
+	var square_value
+	
+	if self.round_state == RoundState.PLAYER_1_PICKING:
+		win_sum = 2
+		block_sum = 20
+		square_value = 1
+	else:
+		win_sum = 20
+		block_sum = 2
+		square_value = 10
+	
+	
 	
 	for row_sequence_list in [row_horizontal, row_vertical, row_diagonal]:
 		for sequence in row_sequence_list:
 			var sequence_values = [board[sequence[0]], board[sequence[1]], board[sequence[2]]]
 			var sequence_sum = board[sequence[0]] + board[sequence[1]] + board[sequence[2]]
 			
-			# if this move will make cpu win
-			if sequence_sum == 20:
+			# if this move will make selected player win
+			if sequence_sum == win_sum:
 				var pos = sequence_values.find(0)
-				board[sequence[pos]] = 10
+				board[sequence[pos]] = square_value
 				buttons[sequence[pos]].emit_signal("pressed")
-				
-				self.emit_signal("onPlayer_2_win")
+			
+			
+			if self.check_for_win(0):
+				self.emit_signal("onPlayer_1_win")
+				self.game_state = TicTacToeState.PLAYER_1_WIN
 				self.round_state = RoundState.IDLE
-				self.game_state = TicTacToeState.PLAYER_2_WIN
 				return
+			elif self.check_for_win(1):
+				self.emit_signal("onPlayer_2_win")
+				self.game_state = TicTacToeState.PLAYER_2_WIN
+				self.round_state = RoundState.IDLE
+				return
+				
 			# if this move will block a player win
 			elif sequence_sum == 2:
 				var pos = sequence_values.find(0)
@@ -136,15 +157,20 @@ func cpu_pick_square():
 	
 	turns += 1
 
-func check_for_win():
+func check_for_win(player: int):
 	var win_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
 	var win_vertical = [[0, 3, 6], [1,6,7], [2,5,8]]
 	var win_diagonal = [[0,4,8], [2,4,6]]
 	
+	var win_sum = -1
+	if player == 0:
+		win_sum = 3
+	else:
+		win_sum = 30
 	for win_sequence_list in [win_horizontal, win_vertical, win_diagonal]:
 		for sequence in win_sequence_list:
 			var sequence_sum = board[sequence[0]] + board[sequence[1]] + board[sequence[2]]
-			if sequence_sum == 3 or sequence_sum == 30:
+			if sequence_sum == win_sum:
 				return true
 	
 	return false
