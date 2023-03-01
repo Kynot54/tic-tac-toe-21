@@ -32,3 +32,7 @@ func _on_TicTacToeGrid_onPlayer_2_win():
 
 func _on_TicTacToeGrid_onTie():
 	$MarginContainer/DebugItems/StatusLabel.text = "Tie :("
+
+
+func _on_BackButton_pressed():
+	Transit.change_scene("res://Title/Main.tscn")

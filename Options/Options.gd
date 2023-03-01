@@ -17,4 +17,7 @@ func _ready():
 
 func _on_Button_pressed():
 	Transit.change_scene("res://Title/Main.tscn")
-	pass
+
+
+func _on_GotoTTTButton_pressed():
+	Transit.change_scene("res://TicTacToe/TicTac.tscn")
