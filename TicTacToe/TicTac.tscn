@@ -212,5 +212,13 @@ margin_bottom = 317.0
 theme = ExtResource( 2 )
 text = "Reset"
 
+[node name="Button" type="Button" parent="DebugItemsVBox"]
+margin_top = 321.0
+margin_right = 644.0
+margin_bottom = 426.0
+theme = ExtResource( 2 )
+text = "Make CPU Move"
+
 [connection signal="pressed" from="DebugItemsVBox/DEBUGChangePlayerButton" to="." method="_on_DEBUGChangePlayerButton_pressed"]
 [connection signal="pressed" from="DebugItemsVBox/DEBUGResetButton" to="." method="_on_DEBUGResetButton_pressed"]
+[connection signal="pressed" from="DebugItemsVBox/Button" to="." method="_on_cpu_move_Button_pressed"]

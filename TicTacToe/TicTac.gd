@@ -16,9 +16,12 @@ enum RoundState {
 
 export var game_state = TicTacToeState.IN_PROGRESS
 export var round_state = RoundState.IDLE
-var player_1_squares = []
-var player_2_squares = []
 var turns = 0
+
+var player_1_value = 1
+var player_2_value = 10
+
+var board = []
 
 onready var x_image = load("res://Assets/Images/red-o.png")
 onready var o_image= load("res://Assets/Images/blue-x.png")
@@ -40,26 +43,36 @@ func on_grid_button_pressed(button, position):
 	var grid_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	
 	if self.round_state == RoundState.PLAYER_1_PICKING:
+		# Disable the square's button
 		button.disabled = true
 		turns += 1
+		
+		# Set the square to an X
 		grid_squares[position].set_texture(x_image)
 		grid_squares[position].expand = true
-		player_1_squares.append(position)
 		
-		if self.check_for_win(player_1_squares):
+		# Add the x to the board value array
+		board[position] = player_1_value
+		
+		if self.check_for_win():
 			$DebugItemsVBox/DEBUGChangePlayerButton.disabled = true
 			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 1 Win"
 			self.game_state = TicTacToeState.PLAYER_1_WIN
 			self.round_state = RoundState.IDLE
 	elif self.round_state == RoundState.PLAYER_2_PICKING:
+		# Disable the square's button
 		button.disabled = true
 		turns += 1
+		
+		# Set the square to an O
 		grid_squares[position].set_texture(o_image)
 		grid_squares[position].expand = true
-		player_2_squares.append(position)
 		
-		if self.check_for_win(player_2_squares):
-			$DebugItemsVBox/DEBUGCurrentPlayerLabel.disabled = true
+		# Add the o to the board value array
+		board[position] = player_2_value
+		
+		if self.check_for_win():
+			$DebugItemsVBox/DEBUGChangePlayerButton.disabled = true
 			$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 2 Win"
 			self.game_state = TicTacToeState.PLAYER_2_WIN
 			self.round_state = RoundState.IDLE
@@ -69,18 +82,78 @@ func on_grid_button_pressed(button, position):
 		self.round_state = RoundState.IDLE
 	
 
-func check_for_win(squares):
+func cpu_pick_square():
+	# Don't pick a square if the game is over
+	if self.game_state != TicTacToeState.IN_PROGRESS:
+		return
+		
+	# if there's no squares left and the game is still in progress, the game is a tie
+	if turns == 9:
+		self.game_state = TicTacToeState.TIE
+		self.round_state = RoundState.IDLE
+	
+	$DebugItemsVBox/DEBUGCurrentPlayerLabel.text = "Player 2 Turn"
+	var buttons = $MarginContainer/CenterContainer/TicTacToeGrid.get_children()
+	
+	var row_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
+	var row_vertical = [[0, 3, 6], [1,6,7], [2,5,8]]
+	var row_diagonal = [[0,4,8], [2,4,6]]
+	
+	self.round_state = RoundState.PLAYER_2_PICKING
+	
+	for row_sequence_list in [row_horizontal, row_vertical, row_diagonal]:
+		for sequence in row_sequence_list:
+			var sequence_values = [board[sequence[0]], board[sequence[1]], board[sequence[2]]]
+			var sequence_sum = board[sequence[0]] + board[sequence[1]] + board[sequence[2]]
+			
+			# if this move will make cpu win
+			if sequence_sum == 20:
+				var pos = sequence_values.find(0)
+				board[sequence[pos]] = 10
+				buttons[sequence[pos]].emit_signal("pressed")
+				
+				print("CPU Pick win square %s" % sequence[pos])
+				
+				self.round_state = RoundState.IDLE
+				self.game_state = TicTacToeState.PLAYER_2_WIN
+				return
+			# if this move will block a player win
+			elif sequence_sum == 2:
+				var pos = sequence_values.find(0)
+				board[sequence[pos]] = 10
+				buttons[sequence[pos]].emit_signal("pressed")
+				
+				print("CPU Pick block square %s" % sequence[pos])
+				
+				return
+		
+	var open_squares = []
+	for i in range(0,9):
+		if board[i] == 0:
+			open_squares.append(i)
+				
+	var move = randi() % open_squares.size()
+	var move_pos = open_squares[move]
+	board[move_pos] = 10
+	buttons[move_pos].emit_signal("pressed")
+	
+	turns += 1
+	print("CPU Pick square %s" % move)
+
+func check_for_win():
 	var win_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
 	var win_vertical = [[0, 3, 6], [1,6,7], [2,5,8]]
 	var win_diagonal = [[0,4,8], [2,4,6]]
 	
-	if squares.size() >= 3:
-		for win_sequence_list in [win_horizontal, win_vertical, win_diagonal]:
-			for sequence in win_sequence_list:
-				if squares.has(sequence[0]) and squares.has(sequence[1]) and squares.has(sequence[2]):
-					return true
+	for win_sequence_list in [win_horizontal, win_vertical, win_diagonal]:
+		for sequence in win_sequence_list:
+			var sequence_sum = board[sequence[0]] + board[sequence[1]] + board[sequence[2]]
+			if sequence_sum == 3 or sequence_sum == 30:
+				return true
 	
 	return false
+	
+
 		
 func reset_grid():
 	var buttons = $MarginContainer/CenterContainer/TicTacToeGrid.get_children()
@@ -94,9 +167,9 @@ func reset_grid():
 	var image_squares = $MarginContainer/CenterContainer/SquaresGridContainer.get_children()
 	for square in image_squares:
 		square.texture = null
-		
-	player_1_squares = []
-	player_2_squares = []
+	
+	board = [0,0,0,0,0,0,0,0,0]
+	turns = 0
 	
 	self.game_state = TicTacToeState.IN_PROGRESS
 	self.round_state = RoundState.IDLE
@@ -118,3 +191,7 @@ func _on_DEBUGChangePlayerButton_pressed():
 
 func _on_DEBUGResetButton_pressed():
 	self.reset_grid()
+
+
+func _on_cpu_move_Button_pressed():
+	cpu_pick_square()
