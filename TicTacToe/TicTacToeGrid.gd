@@ -35,11 +35,12 @@ func _ready():
 	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
 	# Link all the buttons to the common Pressed handler
 	for i in buttons.size():
-		if Deck.player1_win == true:
+		if Deck.player1_win == true and Deck.player2_win == false:
 			buttons[i].connect("pressed", self, "on_grid_button_pressed", [buttons[i], i])
-	if Deck.player2_win == true:
-		var index = cpu_pick_square()
-		buttons[index].connect('pressed', self, 'on_grid_button_pressed', [buttons[index], index])
+		elif Deck.player2_win == true and Deck.player1_win == false:
+			var index = cpu_pick_square()
+			buttons[index].connect("pressed", self, 'on_grid_button_pressed', [buttons[index], index])	
+		
 	self.reset_grid()
 
 func on_grid_button_pressed(button, position):	
@@ -84,7 +85,7 @@ func on_grid_button_pressed(button, position):
 			self.round_state = RoundState.IDLE
 			return
 	
-func cpu_pick_square():
+func cpu_pick_square() -> int:
 	var row_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
 	var row_vertical = [[0, 3, 6], [1,4,7], [2,5,8]]
 	var row_diagonal = [[0,4,8], [2,4,6]]
@@ -104,19 +105,20 @@ func cpu_pick_square():
 	
 	for row_sequence_list in [row_horizontal, row_vertical, row_diagonal]:
 		for sequence in row_sequence_list:
-			var sequence_values = [board[sequence[0]], board[sequence[1]], board[sequence[2]]]
-			var sequence_sum = board[sequence[0]] + board[sequence[1]] + board[sequence[2]]
+			var sequence_values = [sequence[0], sequence[1], sequence[2]]
+			var sequence_sum = sequence[0] + sequence[1] + sequence[2]
+			
 			# if this move will make selected player win
 			if sequence_sum == win_sum:
 				var pos = sequence_values.find(0)
-				board[sequence[pos]] = square_value
-				return sequence[pos]
-				
+				pos = square_value
+				return (sequence[pos])
 			# if this move will block a player win
 			elif sequence_sum == block_sum:
 				var pos = sequence_values.find(0)
-				board[sequence[pos]] = 10
-				return sequence[pos]
+				pos = square_value
+				return (sequence[pos])
+	return 0
 
 func check_for_win(player: int):
 	var win_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
