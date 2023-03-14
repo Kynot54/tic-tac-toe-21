@@ -28,41 +28,12 @@ margin_bottom = 1720.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_right = 980.0
-margin_bottom = 756.0
+margin_bottom = 1620.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 5
-
-[node name="DebugHeader" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 760.0
-margin_right = 980.0
-margin_bottom = 859.0
-theme = ExtResource( 2 )
-text = "Debug"
-
-[node name="DebugOptionsButtons" type="GridContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 863.0
-margin_right = 980.0
-margin_bottom = 1620.0
-size_flags_vertical = 3
-columns = 2
-
-[node name="GotoTTTLabel" type="Label" parent="MarginContainer/VBoxContainer/DebugOptionsButtons"]
-margin_top = 3.0
-margin_right = 500.0
-margin_bottom = 102.0
-size_flags_horizontal = 3
-theme = ExtResource( 2 )
-text = "Goto"
-
-[node name="GotoTTTButton" type="Button" parent="MarginContainer/VBoxContainer/DebugOptionsButtons"]
-margin_left = 504.0
-margin_right = 980.0
-margin_bottom = 105.0
-theme = ExtResource( 2 )
-text = "TicTac.tscn =>"
 
 [node name="Button" type="Button" parent="."]
 anchor_top = 1.0
@@ -74,5 +45,4 @@ margin_bottom = -54.0
 theme = ExtResource( 2 )
 text = "<- Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/DebugOptionsButtons/GotoTTTButton" to="." method="_on_GotoTTTButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

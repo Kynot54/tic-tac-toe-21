@@ -28,37 +28,9 @@ margin_top = 200.0
 margin_right = 1030.0
 margin_bottom = 1820.0
 
-[node name="BackButton" type="Button" parent="MarginContainer/DebugItems"]
-margin_right = 980.0
-margin_bottom = 105.0
-theme = ExtResource( 2 )
-text = "<-- Return to Title Screen"
-
-[node name="ResetGridButton" type="Button" parent="MarginContainer/DebugItems"]
-margin_top = 109.0
-margin_right = 980.0
-margin_bottom = 214.0
-theme = ExtResource( 2 )
-text = "Reset Grid"
-
-[node name="ChangePlayerButton" type="Button" parent="MarginContainer/DebugItems"]
-margin_top = 218.0
-margin_right = 980.0
-margin_bottom = 323.0
-theme = ExtResource( 2 )
-text = "Change Player"
-
-[node name="MakeCPUMoveButton" type="Button" parent="MarginContainer/DebugItems"]
-margin_top = 327.0
-margin_right = 980.0
-margin_bottom = 432.0
-theme = ExtResource( 2 )
-text = "Make CPU Move"
-
 [node name="StatusLabel" type="Label" parent="MarginContainer/DebugItems"]
-margin_top = 436.0
 margin_right = 980.0
-margin_bottom = 535.0
+margin_bottom = 99.0
 theme = ExtResource( 2 )
 text = "Idle"
 align = 1
@@ -82,10 +54,6 @@ margin_bottom = 810.0
 x_image = ExtResource( 3 )
 o_image = ExtResource( 4 )
 
-[connection signal="pressed" from="MarginContainer/DebugItems/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="MarginContainer/DebugItems/ResetGridButton" to="." method="_on_ResetGridButton_pressed"]
-[connection signal="pressed" from="MarginContainer/DebugItems/ChangePlayerButton" to="." method="_on_ChangePlayerButton_pressed"]
-[connection signal="pressed" from="MarginContainer/DebugItems/MakeCPUMoveButton" to="." method="_on_MakeCPUMoveButton_pressed"]
 [connection signal="onPlayer_1_win" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onPlayer_1_win"]
 [connection signal="onPlayer_2_win" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onPlayer_2_win"]
 [connection signal="onTie" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onTie"]
