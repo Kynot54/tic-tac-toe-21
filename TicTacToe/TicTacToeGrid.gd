@@ -67,6 +67,11 @@ func select_square(position):
 				self.emit_signal("onPlayer_1_win")
 				self.game_state = TicTacToeState.PLAYER_1_WIN
 				self.round_state = RoundState.IDLE
+			else:
+				Deck.new_round = true
+				yield(get_tree().create_timer(2), "timeout")
+				Transit.change_scene("res://Player/PlayerCard.tscn")
+				return
 			
 		RoundState.PLAYER_2_PICKING:
 			# Disable the square's button
@@ -82,6 +87,11 @@ func select_square(position):
 				self.emit_signal("onPlayer_2_win")
 				self.game_state = TicTacToeState.PLAYER_2_WIN
 				self.round_state = RoundState.IDLE
+				return
+			else:
+				Deck.new_round = true
+				yield(get_tree().create_timer(2), "timeout")
+				Transit.change_scene("res://Player/PlayerCard.tscn")
 				return
 	
 

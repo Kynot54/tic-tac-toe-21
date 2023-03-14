@@ -2,8 +2,11 @@ extends Node
 
 func _ready():
 	self.connect("script_changed", $DealerMarginContainer, "update_score")
-	for _i in range(2):
-		deal_dealer_card()
+	emit_signal("script_changed", Deck.dealer_score)
+	if Deck.new_round == true:
+		for _i in range(2):
+			deal_dealer_card()
+		Deck.new_round = false
 	determine_dealer_actions()
 	determine_win()
 
@@ -24,18 +27,10 @@ func deal_dealer_card():
 		$DealerMarginContainer/CardSort.add_child(card_sprite)
 
 func _on_PlayerButton_pressed():	
+	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")
 	pass
-		
-func reset_dealer_deck():
-	for card in Deck.dealer_hand:
-		Deck.deck.append(card)
-	Deck.dealer_hand.clear()
 	
-func reset_dealer_score():
-	Deck.dealer_score = 0
-	emit_signal("script_changed", Deck.dealer_score)
-
 func determine_dealer_actions():
 	if Deck.player_hit == true:
 		if Deck.dealer_score <= 16:
@@ -50,8 +45,6 @@ func determine_win():
 			Deck.player1_win = true
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		elif Deck.player_score == Deck.dealer_score:
-			reset_dealer_score()
-			reset_dealer_deck()
 			Deck.new_round = true
 			Transit.change_scene("res://Player/PlayerCard.tscn")
 		else:

@@ -59,7 +59,7 @@ export var deck = [
 	{"rank" : "Ace", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_A_white.png"}
 ]
 func _ready():
-	deck = shuffle_deck()
+	pass
 		
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
@@ -69,7 +69,6 @@ func shuffle_deck():
 		var temp = deck[i]
 		deck[i] = deck[j]
 		deck[j] = temp
-		return deck
 		
 export (int) var player_score = 0
 export (int) var dealer_score = 0

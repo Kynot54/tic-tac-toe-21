@@ -1,14 +1,12 @@
 extends Node
-
+onready var Dealer = ("res://")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("script_changed", $PlayerMarginContainer, "update_score")
 	if Deck.new_round == true:
-		reset_player_score()
-		reset_player_deck()
+		reset_deck()
 		for _i in range(2):
 			deal_player_card()
-		Deck.new_round = false
 		
 func deal_player_card():
 	if Deck.deck:
@@ -32,25 +30,40 @@ func _on_Hit_pressed():
 	Deck.player_hit = true
 	if Deck.player_score > 21:
 		Deck.end =  true
+		yield(get_tree().create_timer(2), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	elif Deck.player_score == 21:
 		Deck.end =  true
+		yield(get_tree().create_timer(2), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	else:
 		pass
 		
 func _on_Stand_pressed():
 	Deck.end =  true
+	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
+	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
-func reset_player_deck():
+func reset_deck():
+	Deck.shuffle_deck()
 	for card in Deck.player_hand:
 		Deck.deck.append(card)
 	Deck.player_hand.clear()
 	
-func reset_player_score():
 	Deck.player_score = 0
 	emit_signal("script_changed", Deck.player_score)
+	
+	for card in Deck.dealer_hand:
+		Deck.deck.append(card)
+	Deck.dealer_hand.clear()
+	
+	Deck.dealer_score = 0
+
+	Deck.end = false
+	Deck.player_hit = false
+	Deck.player1_win = false
+	Deck.player2_win = false
