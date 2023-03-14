@@ -16,7 +16,7 @@ func deal_dealer_card():
 		var card_sprite = Sprite.new()
 		card_sprite.texture = load(card_to_be_dealt["sprite"])
 		card_sprite.scale = Vector2(0.75,0.75)
-		var posY = 910
+		var posY = 1000
 		for card in Deck.dealer_hand.size():
 			posY = int(posY - 90)
 			card_sprite.position = Vector2(480,posY)

@@ -2,6 +2,9 @@ extends Node
 
 onready var TicTacToeBoard = $MarginContainer/CenterContainer/TicTacToeGrid
 
+onready var buttons = $MarginContainer/CenterContainer/TicTacToeGrid/ButtonLayer/TicTacToeGrid.get_children()
+
+
 func _ready():
 	self.TicTacToeBoard.reset_grid()
 	if Deck.player1_win == true:
@@ -19,6 +22,8 @@ func ai_move():
 #	if self.TicTacToeBoard.game_state != self.TicTacToeBoard.TicTacToeState.IN_PROGRESS:
 #		return
 	self.TicTacToeBoard.round_state = TicTacToeBoard.RoundState.PLAYER_2_PICKING
+	for i in buttons.size():
+		buttons[i].set_mouse_filter(2)
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
 	var cpu_move = $MarginContainer/CenterContainer/TicTacToeGrid.cpu_pick_square()
 	

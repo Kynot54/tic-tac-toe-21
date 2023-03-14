@@ -58,13 +58,8 @@ export var deck = [
 	{"rank" : "King", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_King_white.png"},
 	{"rank" : "Ace", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_A_white.png"}
 ]
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	var i = 0
-	while i != 3:
-		shuffle_deck()
-		i += 1
+	deck = shuffle_deck()
 		
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
@@ -74,6 +69,7 @@ func shuffle_deck():
 		var temp = deck[i]
 		deck[i] = deck[j]
 		deck[j] = temp
+		return deck
 		
 export (int) var player_score = 0
 export (int) var dealer_score = 0
