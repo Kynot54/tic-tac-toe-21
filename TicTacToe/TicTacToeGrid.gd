@@ -13,10 +13,6 @@ signal onTie
 # emitted when a square is selected
 signal onSquareSelected
 
-var game_state = TicTacToeState.IN_PROGRESS
-var round_state = RoundState.IDLE
-var turns = 0
-
 var player_1_value = 1
 var player_2_value = 10
 
@@ -29,107 +25,60 @@ func _ready():
 	# Link all the buttons to the common Pressed handler
 	for i in buttons.size():
 		buttons[i].connect("pressed", self, "on_grid_button_pressed", [buttons[i], i])
-	self.reset_grid()
+	
+	self.init_grid()
 
 # Marks a square with an X or an O, depending on self.round_state
 func select_square(position):
 	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
 	var texture_squares = $TextureLayer/TextureGridContainer.get_children()
 	
-	match self.round_state:
-		RoundState.PLAYER_1_PICKING:
+	match Board.round_state:
+		Board.TicTacToeRoundState.PLAYER_1_PICKING:
 			buttons[position].disabled = true
-			turns += 1
+			Board.turns += 1
 			
 			# Set the square to an X
 			texture_squares[position].set_texture(x_image)
 			texture_squares[position].expand = true
 			
 			# Add the x to the board value array
-			board[position] = player_1_value
+			Board.board[position] = player_1_value
 			
 			if self.check_for_win(0):
 				self.emit_signal("onPlayer_1_win")
-				self.game_state = TicTacToeState.PLAYER_1_WIN
-				self.round_state = RoundState.IDLE
+				Board.game_state = Board.TicTacToeGameState.PLAYER_1_WIN
+				Board.round_state = Board.TicTacToeRoundState.IDLE
+			else:
+				Board.round_state = Board.TicTacToeRoundState.IDLE
+				self.emit_signal("onSquareSelected")
 			
-		RoundState.PLAYER_2_PICKING:
+		Board.TicTacToeRoundState.PLAYER_2_PICKING:
 			# Disable the square's button
 			buttons[position].disabled = true
-			turns += 1
+			Board.turns += 1
 			
 			texture_squares[position].set_texture(o_image)
 			texture_squares[position].expand = true
 			
-			board[position] = player_2_value
+			Board.board[position] = player_2_value
 			
 			if self.check_for_win(1):
 				self.emit_signal("onPlayer_2_win")
-				self.game_state = TicTacToeState.PLAYER_2_WIN
-				self.round_state = RoundState.IDLE
+				Board.game_state = Board.TicTacToeGameState.PLAYER_2_WIN
+				Board.round_state = Board.TicTacToeRoundState.IDLE
 				return
+			else:
+				Board.round_state = Board.TicTacToeRoundState.IDLE
+				self.emit_signal("onSquareSelected")
 	
+	if Board.turns == 9:
+		self.emit_signal("onTie")
+		Board.game_state = Board.TicTacToeGameState.TIE
+		Board.round_state = Board.TicTacToeRoundState.IDLE
 
 func on_grid_button_pressed(button, position):	
-	
-	if turns == 9:
-		self.emit_signal("onTie")
-		self.game_state = TicTacToeState.TIE
-		self.round_state = RoundState.IDLE
-		
-	var grid_squares = $TextureLayer/TextureGridContainer.get_children()
-	
-	if Board.round_state == Board.TicTacToeRoundState.PLAYER_1_PICKING:
-		# Disable the square's button
-		button.disabled = true
-		Board.turns += 1
-		
-		# Set the square to an X
-		grid_squares[position].set_texture(x_image)
-		grid_squares[position].expand = true
-		
-		# Add the x to the board value array
-		Board.board[position] = player_1_value
-		
-		if self.check_for_win(0):
-			self.emit_signal("onPlayer_1_win")
-			Board.game_state = Board.TicTacToeGameState.PLAYER_1_WIN
-			Board.round_state = Board.TicTacToeRoundState.IDLE
-	elif Board.round_state == Board.TicTacToeRoundState.PLAYER_2_PICKING:
-		# Disable the square's button
-		button.disabled = true
-		Board.turns += 1
-		
-		# Set the square to an O
-		grid_squares[position].set_texture(o_image)
-		grid_squares[position].expand = true
-		
-		# Add the o to the board value array
-		Board.board[position] = player_2_value
-		
-		if self.check_for_win(1):
-			self.emit_signal("onPlayer_2_win")
-			Board.game_state = Board.TicTacToeGameState.PLAYER_2_WIN
-			Board.round_state = Board.TicTacToeRoundState.IDLE
-	
-	if Board.turns == 9:
-		self.emit_signal("onTie")
-		Board.game_state = Board.TicTacToeGameState.TIE
-		Board.round_state = Board.TicTacToeRoundState.IDLE
-	
-
-func cpu_pick_square():
-	# Don't pick a square if the game is over
-	if Board.game_state != Board.TicTacToeGameState.IN_PROGRESS:
-		return
-		
-	# if there's no squares left and the game is still in progress, the game is a tie
-	if Board.turns == 9:
-		self.emit_signal("onTie")
-		Board.game_state = Board.TicTacToeGameState.TIE
-		Board.round_state = Board.TicTacToeRoundState.IDLE
-		
-	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
+	self.select_square(position)
 	
 func cpu_pick_square() -> int:
 	var row_horizontal = [[0,1,2], [3,4,5], [6,7,8]]

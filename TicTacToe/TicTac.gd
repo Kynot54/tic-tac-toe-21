@@ -2,8 +2,14 @@ extends Node
 
 onready var TicTacToeBoard = $MarginContainer/CenterContainer/TicTacToeGrid
 
-func ready():
-	Board.reset()
+func _ready():
+	self.TicTacToeBoard.init_grid()
+	
+	match Board.round_state:
+		Board.TicTacToeRoundState.PLAYER_1_PICKING:
+			$MarginContainer/DebugItems/StatusLabel.text = "Player 1's turn!"
+		Board.TicTacToeRoundState.PLAYER_2_PICKING:
+			$MarginContainer/DebugItems/StatusLabel.text = "Player 2's turn!"
 	
 func _on_ResetGridButton_pressed():
 	$MarginContainer/DebugItems/StatusLabel.text = "Idle"
@@ -40,3 +46,8 @@ func _on_TicTacToeGrid_onPlayer_2_win():
 
 func _on_TicTacToeGrid_onTie():
 	$MarginContainer/DebugItems/StatusLabel.text = "Tie :("
+
+
+func _on_TicTacToeGrid_onSquareSelected():
+	yield(get_tree().create_timer(2), "timeout")
+	Transit.change_scene(Board.return_to)

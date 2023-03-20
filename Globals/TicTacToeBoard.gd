@@ -20,6 +20,9 @@ var game_state: int = TicTacToeGameState.IN_PROGRESS
 var round_state: int = TicTacToeRoundState.IDLE
 var turns = 0
 
+# Scene to return to after picking a square
+var return_to: String
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
