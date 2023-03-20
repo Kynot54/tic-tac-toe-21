@@ -61,7 +61,10 @@ export var deck = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	shuffle_deck()
+	var i = 0
+	while i != 3:
+		shuffle_deck()
+		i += 1
 		
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
@@ -75,7 +78,9 @@ func shuffle_deck():
 export (int) var player_score = 0
 export (int) var dealer_score = 0
 export (bool) var player_hit = false
-export (bool) var is_end = false
-export (bool) var new_round = false
+export (bool) var player1_win = false
+export (bool) var player2_win = false
+export (bool) var end = false
+export (bool) var new_round = true
 export (Array, Dictionary) var player_hand = []
 export (Array, Dictionary) var dealer_hand = []

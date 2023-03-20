@@ -21,19 +21,22 @@ func _on_ChangePlayerButton_pressed():
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
 		Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
 
-func _on_MakeCPUMoveButton_pressed():
-	self.TicTacToeBoard.cpu_pick_square()
+func ai_move():
+#	if self.TicTacToeBoard.game_state != self.TicTacToeBoard.TicTacToeState.IN_PROGRESS:
+#		return
+	self.TicTacToeBoard.round_state = TicTacToeBoard.RoundState.PLAYER_2_PICKING
+	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
+	var cpu_move = $MarginContainer/CenterContainer/TicTacToeGrid.cpu_pick_square()
+	
+	yield(get_tree().create_timer(2), "timeout")
+	$MarginContainer/CenterContainer/TicTacToeGrid.select_square(cpu_move)
+	
 
 func _on_TicTacToeGrid_onPlayer_1_win():
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Wins!"
-
 
 func _on_TicTacToeGrid_onPlayer_2_win():
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Wins!"
 
 func _on_TicTacToeGrid_onTie():
 	$MarginContainer/DebugItems/StatusLabel.text = "Tie :("
-
-
-func _on_BackButton_pressed():
-	Transit.change_scene("res://Title/Main.tscn")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Assets/TitleTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Dealer/DealerCard.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/PlayerButton.svg" type="Texture" id=3]
 [ext_resource path="res://Dealer/DealerMarginContainer.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Images/Player_Button_Active.svg" type="Texture" id=5]
 
 [node name="Dealer" type="Node"]
 script = ExtResource( 2 )
@@ -35,11 +37,20 @@ margin_right = 980.0
 margin_bottom = 201.0
 action_mode = 0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
+[node name="CardSort" type="YSort" parent="DealerMarginContainer"]
 
 [node name="DealerScore" type="Label" parent="DealerMarginContainer"]
-margin_top = 903.0
+margin_top = 1721.0
 margin_right = 980.0
-margin_bottom = 917.0
+margin_bottom = 1820.0
+size_flags_horizontal = 5
+size_flags_vertical = 12
+theme = ExtResource( 1 )
 text = "Score: 0"
+align = 1
+valign = 1
 
 [connection signal="pressed" from="DealerMarginContainer/VBoxContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]

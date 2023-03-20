@@ -9,8 +9,3 @@ func _ready():
 
 func update_score(value):
 	score.text = "Score: " + str(value)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
