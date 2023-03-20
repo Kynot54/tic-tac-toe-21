@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "TicTacToeGrid",
+"language": "GDScript",
+"path": "res://TicTacToe/TicTacToeGrid.gd"
+}, {
+"base": "Node",
+"class": "TicTacToeSceneState",
+"language": "GDScript",
+"path": "res://Globals/TicTacToeBoard.gd"
+} ]
+_global_script_class_icons={
+"TicTacToeGrid": "",
+"TicTacToeSceneState": ""
+}
+
 [application]
 
 config/name="tic-tac-toe-21"
