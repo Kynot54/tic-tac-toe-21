@@ -4,17 +4,10 @@ onready var TicTacToeBoard = $MarginContainer/CenterContainer/TicTacToeGrid
 
 func _ready():
 	self.TicTacToeBoard.init_grid()
-	
-	match Board.round_state:
-		Board.TicTacToeRoundState.PLAYER_1_PICKING:
-			$MarginContainer/DebugItems/StatusLabel.text = "Player 1's turn!"
-		Board.TicTacToeRoundState.PLAYER_2_PICKING:
-			$MarginContainer/DebugItems/StatusLabel.text = "Player 2's turn!"
-	
-func _on_ResetGridButton_pressed():
-	$MarginContainer/DebugItems/StatusLabel.text = "Idle"
-	Board.reset()
-	self.TicTacToeBoard.init_grid()
+	if Deck.player1_win == true:
+		player_move()
+	elif Deck.player2_win == true:
+		ai_move()
 
 func _on_ChangePlayerButton_pressed():
 	if Board.game_state != Board.TicTacToeGameState.IN_PROGRESS:
@@ -27,16 +20,21 @@ func _on_ChangePlayerButton_pressed():
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
 		Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
 
+func player_move():
+	Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Picking"
+	
+	yield(self.TicTacToeBoard, "onSquareSelected")
+	yield(get_tree().create_timer(2), "timeout")
+
 func ai_move():
-#	if self.TicTacToeBoard.game_state != self.TicTacToeBoard.TicTacToeState.IN_PROGRESS:
-#		return
-	self.TicTacToeBoard.round_state = TicTacToeBoard.RoundState.PLAYER_2_PICKING
+	Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
 	var cpu_move = $MarginContainer/CenterContainer/TicTacToeGrid.cpu_pick_square()
 	
 	yield(get_tree().create_timer(2), "timeout")
+	print("picking square %s" % cpu_move)
 	$MarginContainer/CenterContainer/TicTacToeGrid.select_square(cpu_move)
-	
 
 func _on_TicTacToeGrid_onPlayer_1_win():
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Wins!"

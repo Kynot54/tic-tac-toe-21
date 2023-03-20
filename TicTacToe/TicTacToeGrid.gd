@@ -22,6 +22,7 @@ export(Texture) var o_image
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
+	
 	# Link all the buttons to the common Pressed handler
 	for i in buttons.size():
 		buttons[i].connect("pressed", self, "on_grid_button_pressed", [buttons[i], i])
@@ -77,7 +78,7 @@ func select_square(position):
 		Board.game_state = Board.TicTacToeGameState.TIE
 		Board.round_state = Board.TicTacToeRoundState.IDLE
 
-func on_grid_button_pressed(button, position):	
+func on_grid_button_pressed(_button, position):	
 	self.select_square(position)
 	
 func cpu_pick_square() -> int:
@@ -87,16 +88,13 @@ func cpu_pick_square() -> int:
 	
 	var win_sum = 0
 	var block_sum = 0
-	var square_value
 	
 	if Board.round_state == Board.TicTacToeRoundState.PLAYER_1_PICKING:
 		win_sum = 2
 		block_sum = 20
-		square_value = 1
 	else:
 		win_sum = 20
 		block_sum = 2
-		square_value = 10
 	
 	for row_sequence_list in [row_horizontal, row_vertical, row_diagonal]:
 		for sequence in row_sequence_list:
@@ -106,14 +104,20 @@ func cpu_pick_square() -> int:
 			# if this move will make selected player win
 			if sequence_sum == win_sum:
 				var pos = sequence_values.find(0)
-				pos = square_value
 				return (sequence[pos])
 			# if this move will block a player win
 			elif sequence_sum == block_sum:
 				var pos = sequence_values.find(0)
-				pos = square_value
 				return (sequence[pos])
-	return 0
+	
+	# If there isn't a move that will win or block a win, select a random open square
+	var open_squares = []
+	for i in range(Board.board.size()):
+		if Board.board[i] == 0:
+			open_squares.append(i)
+	
+	randomize()
+	return open_squares[randi() % open_squares.size()]
 
 func check_for_win(player: int):
 	var win_horizontal = [[0,1,2], [3,4,5], [6,7,8]]
@@ -137,13 +141,13 @@ func init_grid():
 	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
 	var image_squares = $TextureLayer/TextureGridContainer.get_children()
 	
-	for i in range(buttons.size()):
+	for i in range(Board.board.size()):
 		if Board.board[i] != 0:
 			buttons[i].disabled = true
 		else:
 			buttons[i].disabled = false
 	
-	for i in range(buttons.size()):
+	for i in range(Board.board.size()):
 		if Board.board[i] == 1:
 			image_squares[i].texture = x_image
 		elif Board.board[i] == 10:
