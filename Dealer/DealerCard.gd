@@ -49,7 +49,6 @@ func determine_win():
 		if Deck.player_score > Deck.dealer_score and !(Deck.player_score > 21):
 			Deck.player1_win = true
 			
-			Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
 			# FIXME: return to correct scene
 			Board.return_to = "res://Title/Main.tscn"
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
@@ -61,7 +60,6 @@ func determine_win():
 		else:
 			Deck.player2_win = true
 			
-			Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
 			# FIXME: return to correct scene
 			Board.return_to = "res://Title/Main.tscn"
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
