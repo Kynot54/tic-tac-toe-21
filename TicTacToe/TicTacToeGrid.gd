@@ -115,8 +115,7 @@ func cpu_pick_square() -> int:
 	for i in range(Board.board.size()):
 		if Board.board[i] == 0:
 			open_squares.append(i)
-	
-	randomize()
+			
 	return open_squares[randi() % open_squares.size()]
 
 func check_for_win(player: int):

@@ -33,7 +33,7 @@ func ai_move():
 	var cpu_move = $MarginContainer/CenterContainer/TicTacToeGrid.cpu_pick_square()
 	
 	yield(get_tree().create_timer(2), "timeout")
-	print("picking square %s" % cpu_move)
+	#print("picking square %s" % cpu_move)
 	$MarginContainer/CenterContainer/TicTacToeGrid.select_square(cpu_move)
 
 func _on_TicTacToeGrid_onPlayer_1_win():
