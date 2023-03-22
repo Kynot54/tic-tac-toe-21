@@ -56,4 +56,5 @@ o_image = ExtResource( 4 )
 
 [connection signal="onPlayer_1_win" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onPlayer_1_win"]
 [connection signal="onPlayer_2_win" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onPlayer_2_win"]
+[connection signal="onSquareSelected" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onSquareSelected"]
 [connection signal="onTie" from="MarginContainer/CenterContainer/TicTacToeGrid" to="." method="_on_TicTacToeGrid_onTie"]

@@ -59,14 +59,16 @@ export var deck = [
 	{"rank" : "Ace", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_A_white.png"}
 ]
 func _ready():
-	pass
-		
+	shuffle_deck()
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
-	for i in range(len(deck)-1):
-		var rng = RandomNumberGenerator.new()
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+		
+	for i in range(51):
 		var j = rng.randi_range(0,51)
-		var temp = deck[i]
+		#var j = randi() % 51
+		var temp = deck[j]
 		deck[i] = deck[j]
 		deck[j] = temp
 		

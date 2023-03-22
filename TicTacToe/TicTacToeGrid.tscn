@@ -30,24 +30,28 @@ columns = 3
 margin_right = 200.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="1Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 204.0
 margin_right = 404.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="2Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 408.0
 margin_right = 608.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="3Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_top = 204.0
 margin_right = 200.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="4Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 204.0
@@ -55,6 +59,7 @@ margin_top = 204.0
 margin_right = 404.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="5Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 408.0
@@ -62,12 +67,14 @@ margin_top = 204.0
 margin_right = 608.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="6Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_top = 408.0
 margin_right = 200.0
 margin_bottom = 608.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="7Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 204.0
@@ -75,6 +82,7 @@ margin_top = 408.0
 margin_right = 404.0
 margin_bottom = 608.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="8Texture" type="TextureRect" parent="TextureLayer/TextureGridContainer"]
 margin_left = 408.0
@@ -82,6 +90,7 @@ margin_top = 408.0
 margin_right = 608.0
 margin_bottom = 608.0
 rect_min_size = Vector2( 200, 200 )
+expand = true
 
 [node name="ButtonLayer" type="CanvasLayer" parent="."]
 
