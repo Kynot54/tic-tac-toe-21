@@ -61,17 +61,17 @@ export var deck = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var i = 0
-	while i != 3:
-		shuffle_deck()
-		i += 1
-		
+	shuffle_deck()
+
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
-	for i in range(len(deck)-1):
-		var rng = RandomNumberGenerator.new()
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+		
+	for i in range(51):
 		var j = rng.randi_range(0,51)
-		var temp = deck[i]
+		#var j = randi() % 51
+		var temp = deck[j]
 		deck[i] = deck[j]
 		deck[j] = temp
 		

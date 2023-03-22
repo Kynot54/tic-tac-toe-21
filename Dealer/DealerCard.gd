@@ -48,6 +48,9 @@ func determine_win():
 	if Deck.end == true:
 		if Deck.player_score > Deck.dealer_score and !(Deck.player_score > 21):
 			Deck.player1_win = true
+			
+			Board.return_to = "res://Player/PlayerCard.tscn"
+			Deck.new_round = true
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		elif Deck.player_score == Deck.dealer_score:
 			reset_dealer_score()
@@ -56,4 +59,7 @@ func determine_win():
 			Transit.change_scene("res://Player/PlayerCard.tscn")
 		else:
 			Deck.player2_win = true
+			
+			Board.return_to = "res://Player/PlayerCard.tscn"
+			Deck.new_round = true
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
