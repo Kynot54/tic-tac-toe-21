@@ -53,6 +53,7 @@ func select_square(position):
 			else:
 				Board.round_state = Board.TicTacToeRoundState.IDLE
 				self.emit_signal("onSquareSelected")
+
 			
 		Board.TicTacToeRoundState.PLAYER_2_PICKING:
 			# Disable the square's button

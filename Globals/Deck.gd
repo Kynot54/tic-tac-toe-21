@@ -58,11 +58,8 @@ export var deck = [
 	{"rank" : "King", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_King_white.png"},
 	{"rank" : "Ace", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_A_white.png"}
 ]
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	shuffle_deck()
-
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
 	var rng = RandomNumberGenerator.new()
