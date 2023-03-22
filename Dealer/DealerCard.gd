@@ -29,7 +29,6 @@ func deal_dealer_card():
 func _on_PlayerButton_pressed():	
 	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")
-	pass
 	
 func determine_dealer_actions():
 	if Deck.player_hit == true:
@@ -38,10 +37,12 @@ func determine_dealer_actions():
 			Deck.player_hit = false
 		elif Deck.dealer_score > 16:
 			pass
+	else:
+		pass
 			
 func determine_win():
 	if Deck.end == true:
-		if Deck.player_score > Deck.dealer_score and !(Deck.player_score > 21):
+		if Deck.player_score > Deck.dealer_score:
 			Deck.player1_win = true
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		elif Deck.player_score == Deck.dealer_score:

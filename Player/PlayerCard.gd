@@ -11,7 +11,13 @@ func _ready():
 func deal_player_card():
 	if Deck.deck:
 		var card_to_be_dealt = Deck.deck.pop_back()
-		Deck.player_score += card_to_be_dealt["value"]
+		if Deck.player_score <= 10 and card_to_be_dealt["rank"] == "Ace":
+			card_to_be_dealt["value"] = 11
+		else:
+			card_to_be_dealt["value"] = 1
+	#	for card in Deck.player_hand.size():
+	#		if Deck.player_hand[card]
+		Deck.player_score += card_to_be_dealt["value"]	
 		emit_signal("script_changed", Deck.player_score)
 		Deck.player_hand.append(card_to_be_dealt)
 		var card_sprite = Sprite.new()
@@ -30,18 +36,18 @@ func _on_Hit_pressed():
 	Deck.player_hit = true
 	if Deck.player_score > 21:
 		Deck.end =  true
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	elif Deck.player_score == 21:
 		Deck.end =  true
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	else:
 		pass
 		
 func _on_Stand_pressed():
 	Deck.end =  true
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
