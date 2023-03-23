@@ -78,6 +78,8 @@ func select_square(position):
 		self.emit_signal("onTie")
 		Board.game_state = Board.TicTacToeGameState.TIE
 		Board.round_state = Board.TicTacToeRoundState.IDLE
+		Board.return_to = "res://Title/Main.tscn"
+		Transit.change_scene(Board.return_to)
 
 func on_grid_button_pressed(_button, position):	
 	self.select_square(position)
