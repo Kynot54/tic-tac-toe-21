@@ -23,7 +23,7 @@ func deal_player_card():
 			posY = int(posY - 90)
 			card_sprite.position = Vector2(480,posY)
 		# Find way to add shadow/overlay effects to them
-		$PlayerMarginContainer/Player21Container/CardContainer/CardSort.add_child(card_sprite)
+		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
 		card_sprite.owner = self
 				
 func _on_Hit_pressed():
