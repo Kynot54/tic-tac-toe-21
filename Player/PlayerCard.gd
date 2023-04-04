@@ -32,6 +32,8 @@ func deal_player_card():
 		card_sprite.owner = self
 				
 func _on_Hit_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	
 	deal_player_card()
 	Deck.player_hit = true
 	if Deck.player_score > 21:
@@ -46,11 +48,15 @@ func _on_Hit_pressed():
 		pass
 		
 func _on_Stand_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	
 	Deck.end =  true
 	yield(get_tree().create_timer(0.5), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	
 	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	

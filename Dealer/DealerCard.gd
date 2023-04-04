@@ -26,7 +26,9 @@ func deal_dealer_card():
 		# Determine how to overlay cards in a manner similar to player
 		$DealerMarginContainer/CardSort.add_child(card_sprite)
 
-func _on_PlayerButton_pressed():	
+func _on_PlayerButton_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	
 	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")
 	
