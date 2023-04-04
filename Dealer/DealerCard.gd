@@ -7,6 +7,7 @@ func _ready():
 		for _i in range(2):
 			deal_dealer_card()
 		Deck.new_round = false
+	yield(get_tree().create_timer(1), "timeout")
 	determine_dealer_actions()
 	if Deck.end == true:
 		determine_win()
@@ -20,7 +21,7 @@ func deal_dealer_card():
 		var card_sprite = Sprite.new()
 		card_sprite.texture = load(card_to_be_dealt["sprite"])
 		card_sprite.scale = Vector2(0.75,0.75)
-		var posY = 1000
+		var posY = 1200
 		for card in Deck.dealer_hand.size():
 			posY = int(posY - 90)
 			card_sprite.position = Vector2(480,posY)
@@ -50,13 +51,16 @@ func determine_win():
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			Deck.new_round = true
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
-		elif Deck.player_score == Deck.dealer_score:
+		elif Deck.player_score == Deck.dealer_score or Deck.player_score > 21 and Deck.dealer_score > 21:
+			Deck.new_round = true
+			Transit.change_scene("res://Player/PlayerCard.tscn")
+		elif Deck.player_score > 21 and Deck.dealer_score > 21:
 			Deck.new_round = true
 			Transit.change_scene("res://Player/PlayerCard.tscn")
 		else:
 			Deck.player2_win = true
-			Board.return_to = "res://Player/PlayerCard.tscn"
 			Deck.new_round = true
+			Board.return_to = "res://Player/PlayerCard.tscn"
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 			
 func save_sprites():

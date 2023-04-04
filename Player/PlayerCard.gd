@@ -31,23 +31,22 @@ func _on_Hit_pressed():
 	Deck.player_hit = true
 	if Deck.player_score > 21:
 		Deck.end = true
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	elif Deck.player_score == 21:
 		Deck.end = true
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	else:
 		pass
 		
 func _on_Stand_pressed():
 	Deck.end = true
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
 	save_sprites()
-	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func save_sprites():
