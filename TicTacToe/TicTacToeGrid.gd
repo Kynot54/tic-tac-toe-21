@@ -50,6 +50,8 @@ func select_square(position):
 				self.emit_signal("onPlayer_1_win")
 				Board.game_state = Board.TicTacToeGameState.PLAYER_1_WIN
 				Board.round_state = Board.TicTacToeRoundState.IDLE
+				Board.reset()
+				Transit.change_scene("res://Title/Main.tscn")
 			else:
 				Board.round_state = Board.TicTacToeRoundState.IDLE
 				self.emit_signal("onSquareSelected")
@@ -69,7 +71,8 @@ func select_square(position):
 				self.emit_signal("onPlayer_2_win")
 				Board.game_state = Board.TicTacToeGameState.PLAYER_2_WIN
 				Board.round_state = Board.TicTacToeRoundState.IDLE
-				return
+				Board.reset()
+				Transit.change_scene("res://Title/Main.tscn")
 			else:
 				Board.round_state = Board.TicTacToeRoundState.IDLE
 				self.emit_signal("onSquareSelected")
@@ -78,6 +81,8 @@ func select_square(position):
 		self.emit_signal("onTie")
 		Board.game_state = Board.TicTacToeGameState.TIE
 		Board.round_state = Board.TicTacToeRoundState.IDLE
+		Board.return_to = "res://Title/Main.tscn"
+		Transit.change_scene(Board.return_to)
 
 func on_grid_button_pressed(_button, position):	
 	self.select_square(position)

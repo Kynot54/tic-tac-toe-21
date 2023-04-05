@@ -31,9 +31,9 @@ run/main_scene="res://Title/Main.tscn"
 
 [autoload]
 
+Transit="*res://Globals/addons/transit/Transit.tscn"
 Deck="*res://Globals/Deck.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
-Transit="*res://Globals/addons/transit/Transit.tscn"
 
 [display]
 
@@ -46,7 +46,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
