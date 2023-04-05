@@ -49,7 +49,7 @@ func _on_Stand_pressed():
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
-  Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 	save_sprites()
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
