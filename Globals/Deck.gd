@@ -14,7 +14,7 @@ export var deck = [
 	{"rank" : "Jack", "suit": "Clovers", "value": 10, "sprite": "res://Cards/Clovers_Jack_white.png"},
 	{"rank" : "Queen", "suit": "Clovers", "value": 10, "sprite": "res://Cards/Clovers_Queen_white.png"},
 	{"rank" : "King", "suit": "Clovers", "value": 10, "sprite": "res://Cards/Clovers_King_white.png"},
-	{"rank" : "Ace", "suit": "Clovers", "value": 10, "sprite": "res://Cards/Clovers_A_white.png"},
+	{"rank" : "Ace", "suit": "Clovers", "value": 11, "sprite": "res://Cards/Clovers_A_white.png"},
 	#Hearts
 	{"rank" : "2", "suit": "Hearts", "value": 2, "sprite": "res://Cards/Hearts_2_white.png"},
 	{"rank" : "3", "suit": "Hearts", "value": 3, "sprite": "res://Cards/Hearts_3_white.png"},
@@ -28,7 +28,7 @@ export var deck = [
 	{"rank" : "Jack", "suit": "Hearts", "value": 10, "sprite": "res://Cards/Hearts_Jack_white.png"},
 	{"rank" : "Queen", "suit": "Hearts", "value": 10, "sprite": "res://Cards/Hearts_Queen_white.png"},
 	{"rank" : "King", "suit": "Hearts", "value": 10, "sprite": "res://Cards/Hearts_King_white.png"},
-	{"rank" : "Ace", "suit": "Hearts", "value": 10, "sprite": "res://Cards/Hearts_A_white.png"},
+	{"rank" : "Ace", "suit": "Hearts", "value": 11, "sprite": "res://Cards/Hearts_A_white.png"},
 	#Spades
 	{"rank" : "2", "suit": "Spades", "value": 2, "sprite": "res://Cards/Pikes_2_white.png"},
 	{"rank" : "3", "suit": "Spades", "value": 3, "sprite": "res://Cards/Pikes_3_white.png"},
@@ -42,7 +42,7 @@ export var deck = [
 	{"rank" : "Jack", "suit": "Spades", "value": 10, "sprite": "res://Cards/Pikes_Jack_white.png"},
 	{"rank" : "Queen", "suit": "Spades", "value": 10, "sprite": "res://Cards/Pikes_Queen_white.png"},
 	{"rank" : "King", "suit": "Spades", "value": 10, "sprite": "res://Cards/Pikes_King_white.png"},
-	{"rank" : "Ace", "suit": "Spades", "value": 10, "sprite": "res://Cards/Pikes_A_white.png"},
+	{"rank" : "Ace", "suit": "Spades", "value": 11, "sprite": "res://Cards/Pikes_A_white.png"},
 	#Diamonds
 	{"rank" : "2", "suit": "Diamonds", "value": 2, "sprite": "res://Cards/Tiles_2_white.png"},
 	{"rank" : "3", "suit": "Diamonds", "value": 3, "sprite": "res://Cards/Tiles_3_white.png"},
@@ -56,19 +56,17 @@ export var deck = [
 	{"rank" : "Jack", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_Jack_white.png"},
 	{"rank" : "Queen", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_Queen_white.png"},
 	{"rank" : "King", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_King_white.png"},
-	{"rank" : "Ace", "suit": "Diamonds", "value": 10, "sprite": "res://Cards/Tiles_A_white.png"}
+	{"rank" : "Ace", "suit": "Diamonds", "value": 11, "sprite": "res://Cards/Tiles_A_white.png"}
 ]
 func _ready():
 	shuffle_deck()
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-		
-	for i in range(51):
+	for i in range(len(deck)-1):
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
 		var j = rng.randi_range(0,51)
-		#var j = randi() % 51
-		var temp = deck[j]
+		var temp = deck[i]
 		deck[i] = deck[j]
 		deck[j] = temp
 		
