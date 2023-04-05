@@ -39,10 +39,7 @@ func determine_dealer_actions():
 		if Deck.dealer_score <= 16:
 			deal_dealer_card()
 			Deck.player_hit = false
-		elif Deck.dealer_score > 16:
-			pass
-	else:
-		pass
+	Deck.player_hit = false
 			
 func determine_win():
 	if Deck.end == true:
