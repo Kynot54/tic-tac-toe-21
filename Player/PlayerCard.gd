@@ -1,7 +1,7 @@
 extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("script_changed", $PlayerMarginContainer, "update_score")
+	var _temp = self.connect("script_changed", $PlayerMarginContainer, "update_score")
 	if Deck.new_round == true:
 		reset_deck()
 		for _i in range(2):
