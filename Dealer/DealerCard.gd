@@ -23,7 +23,7 @@ func deal_dealer_card():
 		card_sprite.scale = Vector2(0.75,0.75)
 		var posY = 1200
 		for card in Deck.dealer_hand.size():
-			posY = int(posY - 90)
+			posY = int(posY - 90.125)
 			card_sprite.position = Vector2(480,posY)
 		# Determine how to overlay cards in a manner similar to player
 		$DealerMarginContainer/CardSort.add_child(card_sprite)

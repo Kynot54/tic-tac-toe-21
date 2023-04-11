@@ -20,7 +20,7 @@ func deal_player_card():
 		card_sprite.scale = Vector2(0.65,0.65)
 		var posY = 850
 		for card in Deck.player_hand.size():
-			posY = int(posY - 90)
+			posY = int(posY - 90.125)
 			card_sprite.position = Vector2(480,posY)
 		# Find way to add shadow/overlay effects to them
 		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
@@ -33,6 +33,7 @@ func _on_Hit_pressed():
 	Deck.player_hit = true
 	if Deck.player_score > 21:
 		Deck.end = true
+		$PlayerMarginContainer/Player21Container/PlayerButtonsContainter/Hit.disabled = true
 		yield(get_tree().create_timer(1), "timeout")
 		Transit.change_scene("res://Dealer/DealerCard.tscn")
 	elif Deck.player_score == 21:
