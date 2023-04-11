@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	self.connect("script_changed", $DealerMarginContainer, "update_score")
+	var _temp = self.connect("script_changed", $DealerMarginContainer, "update_score")
 	emit_signal("script_changed", Deck.dealer_score)
 	if Deck.new_round == true:
 		for _i in range(2):
