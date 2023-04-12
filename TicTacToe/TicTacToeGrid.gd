@@ -53,6 +53,7 @@ func select_square(position):
 				Board.game_state = Board.TicTacToeGameState.PLAYER_1_WIN
 				Board.round_state = Board.TicTacToeRoundState.IDLE
 				Board.reset()
+				yield(get_tree().create_timer(2), "timeout")
 				Transit.change_scene("res://Title/Main.tscn")
 			else:
 				Board.round_state = Board.TicTacToeRoundState.IDLE
