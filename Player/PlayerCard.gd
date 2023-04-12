@@ -18,12 +18,12 @@ func deal_player_card():
 		var card_sprite = Sprite.new()
 		card_sprite.texture = load(card_to_be_dealt["sprite"])
 		card_sprite.scale = Vector2(0.65,0.65)
-		var posY = 850
+		var posY = 1000
 		for card in Deck.player_hand.size():
-			posY = int(posY - 90.35)
-			card_sprite.position = Vector2(480,posY)
+			posY = int(posY - 91.275)
+			card_sprite.position = Vector2(480,posY) # To center on HTML5 Web Player get_viewport().size.x/2
 		# Find way to add shadow/overlay effects to them
-		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
+		$PlayerMarginContainer/Player21Container/CardCenter/CardSort.add_child(card_sprite)
 		card_sprite.owner = self
 				
 func _on_Hit_pressed():

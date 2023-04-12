@@ -21,12 +21,12 @@ func deal_dealer_card():
 		var card_sprite = Sprite.new()
 		card_sprite.texture = load(card_to_be_dealt["sprite"])
 		card_sprite.scale = Vector2(0.75,0.75)
-		var posY = 1200
+		var posY = 1400
 		for card in Deck.dealer_hand.size():
-			posY = int(posY - 90.35)
+			posY = int(posY - 91.275)
 			card_sprite.position = Vector2(480,posY)
 		# Determine how to overlay cards in a manner similar to player
-		$DealerMarginContainer/CardSort.add_child(card_sprite)
+		$DealerMarginContainer/CardCenter/CardSort.add_child(card_sprite)
 		card_sprite.owner = self
 
 func _on_PlayerButton_pressed():	
@@ -40,6 +40,7 @@ func determine_dealer_actions():
 	var t = rng.randi_range(0,1)
 	while gVar.dealer_score <= 16 and t == 1:
 		deal_dealer_card()
+		yield(get_tree().create_timer(0.5), "timeout")
 			
 func determine_win():
 	if gVar.end == true:

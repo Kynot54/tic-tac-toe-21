@@ -52,7 +52,14 @@ texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 6 )
 
-[node name="CardSort" type="YSort" parent="PlayerMarginContainer/Player21Container"]
+[node name="CardCenter" type="CenterContainer" parent="PlayerMarginContainer/Player21Container"]
+margin_top = 324.0
+margin_bottom = 324.0
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="CardSort" type="YSort" parent="PlayerMarginContainer/Player21Container/CardCenter"]
+position = Vector2( 0, -430 )
 
 [node name="ScoreLabel" type="Label" parent="PlayerMarginContainer/Player21Container"]
 margin_left = 675.0
@@ -63,7 +70,7 @@ size_flags_horizontal = 10
 size_flags_vertical = 10
 size_flags_stretch_ratio = 2.0
 theme = ExtResource( 3 )
-text = "Score: 18"
+text = "Score: 17"
 align = 1
 valign = 3
 max_lines_visible = 0
