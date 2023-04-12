@@ -31,8 +31,9 @@ run/main_scene="res://Title/Main.tscn"
 
 [autoload]
 
-Transit="*res://Globals/addons/transit/Transit.tscn"
+Transit="*res://addons/transit/Transit.tscn"
 Deck="*res://Globals/Deck.gd"
+gVar="*res://Globals/gVar.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
 
 [display]
