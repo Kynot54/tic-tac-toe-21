@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BGM_SE_Player",
+"language": "GDScript",
+"path": "res://Globals/Music.gd"
+}, {
+"base": "Node",
 "class": "TicTacToeGrid",
 "language": "GDScript",
 "path": "res://TicTacToe/TicTacToeGrid.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Globals/TicTacToeBoard.gd"
 } ]
 _global_script_class_icons={
+"BGM_SE_Player": "",
 "TicTacToeGrid": "",
 "TicTacToeSceneState": ""
 }
@@ -35,6 +41,8 @@ Transit="*res://addons/transit/Transit.tscn"
 Deck="*res://Globals/Deck.gd"
 gVar="*res://Globals/gVar.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
+Transit="*res://Globals/addons/transit/Transit.tscn"
+Music="*res://Globals/Music.tscn"
 
 [display]
 

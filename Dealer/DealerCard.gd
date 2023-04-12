@@ -29,7 +29,9 @@ func deal_dealer_card():
 		$DealerMarginContainer/CardCenter/CardSort.add_child(card_sprite)
 		card_sprite.owner = self
 
-func _on_PlayerButton_pressed():	
+
+func _on_PlayerButton_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 	save_sprites()
 	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")

@@ -1,8 +1,10 @@
 extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	self.connect("script_changed", $PlayerMarginContainer, "update_score")
 	if gVar.new_round == true:
+  
 		reset_deck()
 		for _i in range(2):
 			deal_player_card()
@@ -27,6 +29,8 @@ func deal_player_card():
 		card_sprite.owner = self
 				
 func _on_Hit_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	
 	deal_player_card()
 	gVar.player_hit = true
 	if gVar.player_score >= 21:
@@ -39,10 +43,12 @@ func _on_Hit_pressed():
 		
 func _on_Stand_pressed():
 	gVar.end = true
+  Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	
 func _on_DealerButton_pressed():
+	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 	save_sprites()
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 	

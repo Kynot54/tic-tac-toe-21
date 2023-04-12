@@ -9,8 +9,10 @@ func _ready():
 	$"MarginContainer/MainMenuContainer/Version Label".text = "Version %s" % version
 
 func _on_StartButtonCard_pressed():
+	Music.play_button_click(Music.ButtonType.TITLE_BUTTON)
 	Transit.change_scene("res://Player/PlayerCard.tscn")
 
 
 func _on_OptionsButtonCard_pressed():
+	Music.play_button_click(Music.ButtonType.TITLE_BUTTON)
 	Transit.change_scene("res://Options/Options.tscn")
