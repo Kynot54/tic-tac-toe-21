@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2023-04-19T23:31:28.964Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15" etag="pG7f9PvG33RrY5UKZ4xK" version="21.2.1" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="479" dy="344" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="og2_hajn_QeDJoPIQYV9-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="og2_hajn_QeDJoPIQYV9-0" target="og2_hajn_QeDJoPIQYV9-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="90" />
+              <mxPoint x="130" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="og2_hajn_QeDJoPIQYV9-0" target="og2_hajn_QeDJoPIQYV9-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="90" />
+              <mxPoint x="130" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-0" value="Player" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="60" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-3" value="21 Marks the Spot!" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="160" y="40" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-4" value="Play the game" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="og2_hajn_QeDJoPIQYV9-3">
+          <mxGeometry x="45" y="40" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-5" value="Change the game&#39;s options" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="og2_hajn_QeDJoPIQYV9-3">
+          <mxGeometry x="27.5" y="120" width="105" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-6" value="Music volume&lt;br&gt;Sound effects volume" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="og2_hajn_QeDJoPIQYV9-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.005;entryY=0.417;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="og2_hajn_QeDJoPIQYV9-5" target="og2_hajn_QeDJoPIQYV9-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
