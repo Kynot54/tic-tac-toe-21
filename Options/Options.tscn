@@ -44,16 +44,16 @@ margin_bottom = 1720.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_right = 980.0
-margin_bottom = 808.0
+margin_bottom = 537.0
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 5
+stretch_mode = 6
 
 [node name="OptionsContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 812.0
+margin_top = 541.0
 margin_right = 980.0
-margin_bottom = 1620.0
+margin_bottom = 1078.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/hseparation = 50
@@ -121,10 +121,16 @@ margin_top = 245.0
 margin_right = 980.0
 margin_bottom = 245.0
 
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 1082.0
+margin_right = 980.0
+margin_bottom = 1620.0
+size_flags_vertical = 3
+
 [node name="BackButton" type="TextureButton" parent="."]
 margin_left = -92.0
 margin_top = 1685.0
-margin_right = 708.0
+margin_right = 888.0
 margin_bottom = 2685.0
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
