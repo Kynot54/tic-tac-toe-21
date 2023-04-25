@@ -31,6 +31,7 @@ func _ready():
 
 # Marks a square with an X or an O, depending on self.round_state
 func select_square(position):
+
 	Music.play_button_click(Music.ButtonType.TICTACTOE_BUTTON)
 	
 	var buttons = $ButtonLayer/TicTacToeGrid.get_children()
@@ -162,4 +163,3 @@ func init_grid():
 			image_squares[i].texture = o_image
 		else:
 			image_squares[i].texture = null
-			

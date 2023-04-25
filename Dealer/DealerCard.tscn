@@ -27,13 +27,13 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DealerMarginContainer"]
+[node name="DealerButtonContainer" type="VBoxContainer" parent="DealerMarginContainer"]
 margin_right = 980.0
 margin_bottom = 1820.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/VBoxContainer"]
+[node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_right = 980.0
 margin_bottom = 201.0
 disabled = true
@@ -42,7 +42,7 @@ texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
 
-[node name="CardStack" parent="DealerMarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="CardStack" parent="DealerMarginContainer/DealerButtonContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 205.0
@@ -53,15 +53,15 @@ size_flags_vertical = 3
 scale_x = 0.65
 scale_y = 0.65
 
-[node name="DealerScore" type="Label" parent="DealerMarginContainer/VBoxContainer"]
+[node name="DealerScore" type="Label" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_top = 1721.0
 margin_right = 980.0
 margin_bottom = 1820.0
 size_flags_horizontal = 5
 size_flags_vertical = 12
 theme = ExtResource( 1 )
-text = "Score: 9"
+text = "Score: 18"
 align = 1
 valign = 1
 
-[connection signal="pressed" from="DealerMarginContainer/VBoxContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]
+[connection signal="pressed" from="DealerMarginContainer/DealerButtonContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]
