@@ -60,13 +60,6 @@ func _on_PlayerButton_pressed():
 	Transit.change_scene("res://Player/PlayerCard.tscn")
 
 
-func determine_dealer_actions():
-	var t = rng.randi_range(0, 1)
-
-	if gVar.dealer_score <= 16 and t == 1:
-		deal_dealer_card()
-
-
 func should_dealer_hit():
 	var t = rng.randi_range(0, 3)
 
