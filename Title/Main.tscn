@@ -49,7 +49,9 @@ font_path = "res://Assets/Fonts/OpenSans-VariableFont_wdth,wght.ttf"
 size = 36
 font_data = SubResource( 3 )
 
-[node name="MainMenu" type="Node"]
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 5 )
 
 [node name="MainMenuAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -139,5 +141,6 @@ bbcode_text = "[center]by [img=250]res://Assets/Images/wordart/ethan lew.png[/im
 text = "by , , and "
 fit_content_height = true
 
+[connection signal="resized" from="." to="." method="_on_MainMenu_resized"]
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/StartButtonCard" to="." method="_on_StartButtonCard_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/OptionsButtonCard" to="." method="_on_OptionsButtonCard_pressed"]
