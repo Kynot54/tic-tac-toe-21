@@ -2,10 +2,10 @@ extends Node
 onready var card_stack := $PlayerMarginContainer/Player21Container/CardStack
 onready var _score_label := $PlayerMarginContainer/Player21Container/ScoreLabel
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if gVar.new_round == true:
-
 		reset_deck()
 		gVar.reset_hands()
 		self.card_stack.clear()
@@ -14,9 +14,10 @@ func _ready():
 	else:
 		self.card_stack.clear()
 		self.card_stack.set_deck(Deck.player_hand)
-	
+
 	_score_label.text = str("Score: ", gVar.player_score)
-		
+
+
 func deal_player_card():
 	if Deck.deck:
 		# Add card to be dealt to the card stack
@@ -24,14 +25,14 @@ func deal_player_card():
 		card_stack.push_back(card_to_be_dealt)
 
 		if gVar.player_score > 10 and card_to_be_dealt["rank"] == "Ace":
-			card_to_be_dealt["value"] = 1 
+			card_to_be_dealt["value"] = 1
 		gVar.player_score += card_to_be_dealt["value"]
 		Deck.player_hand.append(card_to_be_dealt)
 
 
 func _on_Hit_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
-	
+
 	deal_player_card()
 	gVar.player_hit = true
 	if gVar.player_score >= 21:
