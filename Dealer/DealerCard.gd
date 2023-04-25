@@ -4,12 +4,9 @@ onready var card_stack := $DealerMarginContainer/DealerButtonContainer/CardStack
 onready var _score_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/DealerScore
 onready var _prompt_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/StatePrompt
 onready var _player_button := $DealerMarginContainer/DealerButtonContainer/PlayerButton
-onready var rng = RandomNumberGenerator.new()
 
 
 func _ready():
-	rng.randomize()
-	
 	_player_button.visible = gVar.previewing_deck
 	
 	if gVar.new_round == true:
@@ -61,7 +58,7 @@ func _on_PlayerButton_pressed():
 
 
 func should_dealer_hit():
-	var t = rng.randi_range(0, 3)
+	var t = randi() % 4
 
 	return gVar.dealer_score <= 16 and t < 3
 
