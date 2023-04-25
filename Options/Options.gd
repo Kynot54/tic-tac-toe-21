@@ -30,3 +30,8 @@ func _on_BGMSlider_value_changed(value):
 # sets the SE volume when the slider's value changes
 func _on_SESlider_value_changed(value):
 	Music.se_volume = linear2db(value)
+
+
+func _on_ResetButton_pressed():
+	bgm_slider.value = 1.0
+	se_slider.value = 1.0
