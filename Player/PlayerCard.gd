@@ -10,23 +10,24 @@ func _ready():
 func deal_player_card():
 	if Deck.deck:
 		var card_to_be_dealt = Deck.deck.pop_back()
-		if Deck.player_score > 10 and card_to_be_dealt["rank"] == "Ace":
-			card_to_be_dealt["value"] = 1 
-		Deck.player_score += card_to_be_dealt["value"]	
-		emit_signal("script_changed", Deck.player_score)
-		Deck.player_hand.append(card_to_be_dealt)
-		var card_sprite = Sprite.new()
-		card_sprite.texture = load(card_to_be_dealt["sprite"])
-		card_sprite.scale = Vector2(0.65,0.65)
-		var posY = 850
-		for card in Deck.player_hand.size():
-			posY = int(posY - 90.125)
-			
-			var h_middle = get_viewport().size.x / 2
-			card_sprite.position = Vector2(h_middle,posY)
-		# Find way to add shadow/overlay effects to them
-		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
-		card_sprite.owner = self
+#		if Deck.player_score > 10 and card_to_be_dealt["rank"] == "Ace":
+#			card_to_be_dealt["value"] = 1 
+#		Deck.player_score += card_to_be_dealt["value"]	
+#		emit_signal("script_changed", Deck.player_score)
+#		Deck.player_hand.append(card_to_be_dealt)
+#		var card_sprite = Sprite.new()
+#		card_sprite.texture = load(card_to_be_dealt["sprite"])
+#		card_sprite.scale = Vector2(0.65,0.65)
+#		var posY = 850
+#		for card in Deck.player_hand.size():
+#			posY = int(posY - 90.125)
+#
+#			var h_middle = get_viewport().size.x / 2
+#			card_sprite.position = Vector2(h_middle,posY)
+#		# Find way to add shadow/overlay effects to them
+#		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
+#		card_sprite.owner = self
+		$PlayerMarginContainer/Player21Container/CardStack.push_back(card_to_be_dealt)
 				
 func _on_Hit_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
