@@ -52,6 +52,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 scale_x = 0.65
 scale_y = 0.65
+y_offset = -100
 
 [node name="FooterLabels" type="HBoxContainer" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_top = 1721.0
