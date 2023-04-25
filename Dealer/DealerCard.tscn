@@ -1,24 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/TitleTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Dealer/DealerCard.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/PlayerButton.svg" type="Texture" id=3]
 [ext_resource path="res://Dealer/DealerMarginContainer.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Images/Player_Button_Active.svg" type="Texture" id=5]
-[ext_resource path="res://Cards/Hearts_Queen_white.png" type="Texture" id=6]
-[ext_resource path="res://Cards/Tiles_A_white.png" type="Texture" id=7]
-[ext_resource path="res://Cards/Pikes_9_white.png" type="Texture" id=8]
-[ext_resource path="res://Cards/Pikes_8_white.png" type="Texture" id=9]
-[ext_resource path="res://Cards/Tiles_6_white.png" type="Texture" id=10]
-[ext_resource path="res://Cards/Clovers_A_white.png" type="Texture" id=11]
-[ext_resource path="res://Cards/Hearts_3_white.png" type="Texture" id=12]
-[ext_resource path="res://Cards/Clovers_2_white.png" type="Texture" id=13]
-[ext_resource path="res://Cards/Clovers_10_white.png" type="Texture" id=14]
-[ext_resource path="res://Cards/Tiles_3_white.png" type="Texture" id=15]
-[ext_resource path="res://Cards/Hearts_King_white.png" type="Texture" id=16]
-[ext_resource path="res://Cards/Tiles_4_white.png" type="Texture" id=17]
-[ext_resource path="res://Cards/Hearts_2_white.png" type="Texture" id=18]
-[ext_resource path="res://Cards/Hearts_7_white.png" type="Texture" id=19]
 
 [node name="Dealer" type="Node"]
 script = ExtResource( 2 )
@@ -29,12 +15,14 @@ anchor_bottom = 1.0
 color = Color( 0.709804, 0.709804, 0.709804, 1 )
 
 [node name="DealerMarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -490.0
+margin_top = -910.0
+margin_right = 490.0
+margin_bottom = 910.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -49,83 +37,12 @@ size_flags_vertical = 5
 [node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/VBoxContainer"]
 margin_right = 980.0
 margin_bottom = 201.0
-pressed = true
 action_mode = 0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
 
 [node name="CardSort" type="YSort" parent="DealerMarginContainer"]
-
-[node name="@@4" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 730 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 6 )
-
-[node name="@@5" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 640 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 7 )
-
-[node name="@@4" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 730 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 9 )
-
-[node name="@@5" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 640 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 8 )
-
-[node name="@@4" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 730 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 11 )
-
-[node name="@@5" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 640 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 10 )
-
-[node name="@@4" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 730 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 12 )
-
-[node name="@@5" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 640 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 13 )
-
-[node name="@@4" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 730 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 15 )
-
-[node name="@@5" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 640 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 14 )
-
-[node name="@@77" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 930 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 17 )
-
-[node name="@@78" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 840 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 16 )
-
-[node name="@@10" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 930 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 19 )
-
-[node name="@@11" type="Sprite" parent="DealerMarginContainer/CardSort"]
-position = Vector2( 480, 840 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 18 )
 
 [node name="DealerScore" type="Label" parent="DealerMarginContainer"]
 margin_top = 1721.0

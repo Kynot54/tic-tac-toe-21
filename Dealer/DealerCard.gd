@@ -1,6 +1,10 @@
 extends Node
 
+var h_middle: int
+
 func _ready():
+	h_middle = get_viewport().size.x / 2
+	
 	var _temp = self.connect("script_changed", $DealerMarginContainer, "update_score")
 	emit_signal("script_changed", Deck.dealer_score)
 	if Deck.new_round == true:
@@ -24,7 +28,7 @@ func deal_dealer_card():
 		var posY = 1200
 		for card in Deck.dealer_hand.size():
 			posY = int(posY - 90.125)
-			card_sprite.position = Vector2(480,posY)
+			card_sprite.position = Vector2(h_middle,posY)
 		# Determine how to overlay cards in a manner similar to player
 		$DealerMarginContainer/CardSort.add_child(card_sprite)
 		card_sprite.owner = self

@@ -21,7 +21,9 @@ func deal_player_card():
 		var posY = 850
 		for card in Deck.player_hand.size():
 			posY = int(posY - 90.125)
-			card_sprite.position = Vector2(480,posY)
+			
+			var h_middle = get_viewport().size.x / 2
+			card_sprite.position = Vector2(h_middle,posY)
 		# Find way to add shadow/overlay effects to them
 		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
 		card_sprite.owner = self
