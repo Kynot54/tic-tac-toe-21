@@ -1,38 +1,40 @@
 extends Node
 # Called when the node enters the scene tree for the first time.
+#onready var card_stack := $PlayerMarginContainer/Player21Container/CardStack
+onready var card_stack := $PlayerMarginContainer/Player21Container/CardStack
+onready var _score_label := $PlayerMarginContainer/Player21Container/ScoreLabel
+
+
 func _ready():
-	var _temp = self.connect("script_changed", $PlayerMarginContainer, "update_score")
 	if Deck.new_round == true:
 		reset_deck()
+		self.card_stack.clear()
 		for _i in range(2):
 			deal_player_card()
+	else:
+		self.card_stack.clear()
+		self.card_stack.set_deck(Deck.player_hand)
+	
+	_score_label.text = str("Score: ", Deck.player_score)
 		
 func deal_player_card():
 	if Deck.deck:
+		# Add card to be dealt to the card stack
 		var card_to_be_dealt = Deck.deck.pop_back()
-#		if Deck.player_score > 10 and card_to_be_dealt["rank"] == "Ace":
-#			card_to_be_dealt["value"] = 1 
-#		Deck.player_score += card_to_be_dealt["value"]	
-#		emit_signal("script_changed", Deck.player_score)
-#		Deck.player_hand.append(card_to_be_dealt)
-#		var card_sprite = Sprite.new()
-#		card_sprite.texture = load(card_to_be_dealt["sprite"])
-#		card_sprite.scale = Vector2(0.65,0.65)
-#		var posY = 850
-#		for card in Deck.player_hand.size():
-#			posY = int(posY - 90.125)
-#
-#			var h_middle = get_viewport().size.x / 2
-#			card_sprite.position = Vector2(h_middle,posY)
-#		# Find way to add shadow/overlay effects to them
-#		$PlayerMarginContainer/Player21Container/CardSort.add_child(card_sprite)
-#		card_sprite.owner = self
-		$PlayerMarginContainer/Player21Container/CardStack.push_back(card_to_be_dealt)
-				
+		card_stack.push_back(card_to_be_dealt)
+		
+		if Deck.player_score > 10 and card_to_be_dealt["rank"] == "Ace":
+			card_to_be_dealt["value"] = 1 
+		Deck.player_score += card_to_be_dealt["value"]
+		Deck.player_hand.append(card_to_be_dealt)
+
+
 func _on_Hit_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 	
 	deal_player_card()
+	_score_label.text = str("Score: ", Deck.player_score)
+	
 	Deck.player_hit = true
 	if Deck.player_score > 21:
 		Deck.end = true
@@ -54,32 +56,9 @@ func _on_Stand_pressed():
 	
 func _on_DealerButton_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
-	save_sprites()
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
-	
-func save_sprites():
-	var card_scene = PackedScene.new()
-	var saved_scene = card_scene.pack(self)
-	if saved_scene == OK:
-		var error = ResourceSaver.save("res://Player/PlayerCard.tscn",card_scene)
-		if  error != OK:
-			push_error("An error has occured.")
-	
-func reset_deck():
-	for card in Deck.player_hand:
-		Deck.deck.append(card)
-	Deck.player_hand.clear()
-	
-	Deck.player_score = 0
-	emit_signal("script_changed", Deck.player_score)
-	
-	for card in Deck.dealer_hand:
-		Deck.deck.append(card)
-	Deck.dealer_hand.clear()
-	
-	Deck.dealer_score = 0
 
-	Deck.end = false
-	Deck.player_hit = false
-	Deck.player1_win = false
-	Deck.player2_win = false
+
+func reset_deck():
+	Deck.reset()
+	card_stack.clear()
