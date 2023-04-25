@@ -53,15 +53,31 @@ size_flags_vertical = 3
 scale_x = 0.65
 scale_y = 0.65
 
-[node name="DealerScore" type="Label" parent="DealerMarginContainer/DealerButtonContainer"]
+[node name="FooterLabels" type="HBoxContainer" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_top = 1721.0
 margin_right = 980.0
 margin_bottom = 1820.0
+
+[node name="StatePrompt" type="Label" parent="DealerMarginContainer/DealerButtonContainer/FooterLabels"]
+margin_right = 423.0
+margin_bottom = 99.0
+theme = ExtResource( 1 )
+text = "StatePrompt"
+
+[node name="Spacer" type="Control" parent="DealerMarginContainer/DealerButtonContainer/FooterLabels"]
+margin_left = 427.0
+margin_right = 451.0
+margin_bottom = 99.0
+size_flags_horizontal = 3
+
+[node name="DealerScore" type="Label" parent="DealerMarginContainer/DealerButtonContainer/FooterLabels"]
+margin_left = 455.0
+margin_right = 980.0
+margin_bottom = 99.0
 size_flags_horizontal = 5
 size_flags_vertical = 12
 theme = ExtResource( 1 )
-text = "Score: 18"
-align = 1
-valign = 1
+text = "Dealer Score: -1"
+align = 2
 
 [connection signal="pressed" from="DealerMarginContainer/DealerButtonContainer/PlayerButton" to="." method="_on_PlayerButton_pressed"]

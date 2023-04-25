@@ -7,6 +7,7 @@ func _ready():
 	if gVar.new_round == true:
 
 		reset_deck()
+		gVar.reset_hands()
 		self.card_stack.clear()
 		for _i in range(2):
 			deal_player_card()

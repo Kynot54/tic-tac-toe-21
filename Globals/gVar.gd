@@ -14,3 +14,14 @@ func reset_hands():
 	player_score = 0
 	dealer_score = 0
 	player_hit = false
+
+
+## Reset all state vars to init
+func reset():
+	player_score = 0
+	dealer_score = 0
+	player_hit = false
+	player1_win = false
+	player2_win = false
+	end = false
+	new_round = true

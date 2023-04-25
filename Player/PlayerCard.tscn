@@ -60,7 +60,7 @@ margin_top = 1189.0
 margin_right = 980.0
 margin_bottom = 1288.0
 theme = ExtResource( 3 )
-text = "Score: 21"
+text = "Score: -1"
 align = 2
 max_lines_visible = 0
 
