@@ -41,7 +41,9 @@ Button/styles/hover = SubResource( 9 )
 Button/styles/normal = SubResource( 5 )
 Button/styles/pressed = SubResource( 10 )
 
-[node name="Node" type="Node"]
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 4 )
 
 [node name="ColorRectBackground" type="ColorRect" parent="."]
