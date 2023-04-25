@@ -14,22 +14,22 @@ func _ready():
 
 
 func _on_ChangePlayerButton_pressed():
-	if Board.game_state != Board.TicTacToeGameState.IN_PROGRESS:
+	if Board.game_state != Board.TTTGameState.IN_PROGRESS:
 		return
 
 	if (
-		Board.round_state == Board.TicTacToeRoundState.IDLE
-		or Board.round_state == Board.TicTacToeRoundState.PLAYER_2_PICKING
+		Board.round_state == Board.TTTRoundState.IDLE
+		or Board.round_state == Board.TTTRoundState.PLAYER_2_PICKING
 	):
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Picking"
-		Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+		Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 	else:
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
-		Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+		Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
 
 
 func player_move():
-	Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+	Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Picking"
 
 	yield(self.TicTacToeBoard, "onSquareSelected")
@@ -37,7 +37,7 @@ func player_move():
 
 
 func ai_move():
-	Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+	Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
 	for i in buttons.size():
 		buttons[i].set_mouse_filter(2)
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"

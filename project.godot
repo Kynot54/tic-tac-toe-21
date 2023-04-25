@@ -20,20 +20,20 @@ _global_script_classes=[ {
 "path": "res://Nodes/card_stack/card_stack.gd"
 }, {
 "base": "Node",
+"class": "TTTState",
+"language": "GDScript",
+"path": "res://Globals/TicTacToeBoard.gd"
+}, {
+"base": "Node",
 "class": "TicTacToeGrid",
 "language": "GDScript",
 "path": "res://TicTacToe/TicTacToeGrid.gd"
-}, {
-"base": "Node",
-"class": "TicTacToeSceneState",
-"language": "GDScript",
-"path": "res://Globals/TicTacToeBoard.gd"
 } ]
 _global_script_class_icons={
 "BGM_SE_Player": "",
 "CardStack": "",
-"TicTacToeGrid": "",
-"TicTacToeSceneState": ""
+"TTTState": "",
+"TicTacToeGrid": ""
 }
 
 [application]

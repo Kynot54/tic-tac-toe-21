@@ -39,7 +39,7 @@ func select_square(position):
 	var texture_squares = $TextureLayer/TextureGridContainer.get_children()
 
 	match Board.round_state:
-		Board.TicTacToeRoundState.PLAYER_1_PICKING:
+		Board.TTTRoundState.PLAYER_1_PICKING:
 			buttons[position].disabled = true
 			Board.turns += 1
 
@@ -52,16 +52,16 @@ func select_square(position):
 
 			if self.check_for_win(0):
 				self.emit_signal("onPlayer_1_win")
-				Board.game_state = Board.TicTacToeGameState.PLAYER_1_WIN
-				Board.round_state = Board.TicTacToeRoundState.IDLE
+				Board.game_state = Board.TTTGameState.PLAYER_1_WIN
+				Board.round_state = Board.TTTRoundState.IDLE
 				Board.reset()
 				yield(get_tree().create_timer(2), "timeout")
 				Transit.change_scene("res://Title/Main.tscn")
 			else:
-				Board.round_state = Board.TicTacToeRoundState.IDLE
+				Board.round_state = Board.TTTRoundState.IDLE
 				self.emit_signal("onSquareSelected")
 
-		Board.TicTacToeRoundState.PLAYER_2_PICKING:
+		Board.TTTRoundState.PLAYER_2_PICKING:
 			# Disable the square's button
 			buttons[position].disabled = true
 			Board.turns += 1
@@ -73,18 +73,18 @@ func select_square(position):
 
 			if self.check_for_win(1):
 				self.emit_signal("onPlayer_2_win")
-				Board.game_state = Board.TicTacToeGameState.PLAYER_2_WIN
-				Board.round_state = Board.TicTacToeRoundState.IDLE
+				Board.game_state = Board.TTTGameState.PLAYER_2_WIN
+				Board.round_state = Board.TTTRoundState.IDLE
 				Board.reset()
 				Transit.change_scene("res://Title/Main.tscn")
 			else:
-				Board.round_state = Board.TicTacToeRoundState.IDLE
+				Board.round_state = Board.TTTRoundState.IDLE
 				self.emit_signal("onSquareSelected")
 
 	if Board.turns == 9:
 		self.emit_signal("onTie")
-		Board.game_state = Board.TicTacToeGameState.TIE
-		Board.round_state = Board.TicTacToeRoundState.IDLE
+		Board.game_state = Board.TTTGameState.TIE
+		Board.round_state = Board.TTTRoundState.IDLE
 		Board.return_to = "res://Title/Main.tscn"
 		Transit.change_scene(Board.return_to)
 
@@ -101,7 +101,7 @@ func cpu_pick_square() -> int:
 	var win_sum = 0
 	var block_sum = 0
 
-	if Board.round_state == Board.TicTacToeRoundState.PLAYER_1_PICKING:
+	if Board.round_state == Board.TTTRoundState.PLAYER_1_PICKING:
 		win_sum = 2
 		block_sum = 20
 	else:

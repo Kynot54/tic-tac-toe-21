@@ -70,7 +70,7 @@ func determine_win():
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")
-			Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+			Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		elif gVar.player_score == gVar.dealer_score:
 			_prompt_label.text = "Tie!"
@@ -91,7 +91,7 @@ func determine_win():
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")
-			Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+			Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		else:
 			_prompt_label.text = "Dealer Wins!"
@@ -100,6 +100,6 @@ func determine_win():
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")
-			Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+			Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 
