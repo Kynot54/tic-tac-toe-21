@@ -1,13 +1,24 @@
-extends Node
+extends Control
+
+onready var card_stack := $DealerMarginContainer/VBoxContainer/CardStack
+onready var _score_label := $DealerMarginContainer/VBoxContainer/DealerScore
 
 func _ready():
-	self.connect("script_changed", $DealerMarginContainer, "update_score")
-	emit_signal("script_changed", gVar.dealer_score)
 	if gVar.new_round == true:
+  self.card_stack.clear()
 		for _i in range(2):
 			deal_dealer_card()
 		gVar.new_round = false
+	else:
+		self.card_stack.clear()
+		self.card_stack.set_deck(Deck.dealer_hand)
+
+	_score_label.text = str("Score: ", Deck.dealer_score)
+	
+
 	yield(get_tree().create_timer(1), "timeout")
+	$DealerMarginContainer/VBoxContainer/PlayerButton.disabled = false
+	
 	determine_dealer_actions()
 	if gVar.end == true:
 		determine_win()
@@ -16,24 +27,13 @@ func deal_dealer_card():
 	if Deck.deck:
 		var card_to_be_dealt = Deck.deck.pop_back()
 		gVar.dealer_score += card_to_be_dealt["value"]
-		emit_signal("script_changed", gVar.dealer_score)
-		Deck.dealer_hand.append(card_to_be_dealt)
-		var card_sprite = Sprite.new()
-		card_sprite.texture = load(card_to_be_dealt["sprite"])
-		card_sprite.scale = Vector2(0.75,0.75)
-		var posY = 1400
-		for card in Deck.dealer_hand.size():
-			posY = int(posY - 91.275)
-			card_sprite.position = Vector2(480,posY)
-		# Determine how to overlay cards in a manner similar to player
-		$DealerMarginContainer/CardCenter/CardSort.add_child(card_sprite)
-		card_sprite.owner = self
+		gVar.dealer_hand.append(card_to_be_dealt)
+		
+		self.card_stack.push_back(card_to_be_dealt)
 
 
 func _on_PlayerButton_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
-	save_sprites()
-	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")
 	
 func determine_dealer_actions():
@@ -67,12 +67,4 @@ func determine_win():
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
-			
-func save_sprites():
-	var card_scene = PackedScene.new()
-	var saved_scene = card_scene.pack(self)
-	if saved_scene == OK:
-		var error = ResourceSaver.save("res://Dealer/DealerCard.tscn",card_scene)
-		if  error != OK:
-			push_error("An error has occured.")
-	
+

@@ -1,6 +1,6 @@
 extends Node
 
-export var deck = [
+const CARD_DECK = [
 	#Clovers
 	{"rank" : "2", "suit": "Clovers", "value": 2, "sprite": "res://Assets/Cards/Clovers_2_white.png"},
 	{"rank" : "3", "suit": "Clovers", "value": 3, "sprite": "res://Assets/Cards/Clovers_3_white.png"},
@@ -58,9 +58,39 @@ export var deck = [
 	{"rank" : "King", "suit": "Diamonds", "value": 10, "sprite": "res://Assets/Cards/Tiles_King_white.png"},
 	{"rank" : "Ace", "suit": "Diamonds", "value": 11, "sprite": "res://Assets/Cards/Tiles_A_white.png"}
 ]
+
+var player_score = 0
+var dealer_score = 0
+var player_hit = false
+var player1_win = false
+var player2_win = false
+var end = false
+var new_round = true
+var player_hand = []
+var dealer_hand = []
+var deck: Array
+
 func _ready():
-	shuffle_deck()
-	
+	deck = CARD_DECK.duplicate()
+	deck.shuffle()
+	#shuffle_deck()
+
+
+## Reset the 21 game state to the initial state
+func reset():
+	deck = CARD_DECK.duplicate()
+	deck.shuffle()
+	player_score = 0
+	dealer_score = 0
+	player_hit = false
+	player1_win = false
+	player2_win = false
+	end = false
+	new_round = true
+	player_hand.clear()
+	dealer_hand.clear()
+
+
 func shuffle_deck():
 	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
 	for i in range(len(deck)-1):
@@ -70,6 +100,4 @@ func shuffle_deck():
 		var temp = deck[i]
 		deck[i] = deck[j]
 		deck[j] = temp
-		
-export (Array, Dictionary) var player_hand = []
-export (Array, Dictionary) var dealer_hand = []
+    

@@ -18,7 +18,7 @@ func _ready():
 
 
 # Returns to the title screen
-func _on_Button_pressed():
+func _on_BackButton_pressed():
 	Music.play_button_click(Music.ButtonType.TITLE_BUTTON)
 	Transit.change_scene("res://Title/Main.tscn")
 

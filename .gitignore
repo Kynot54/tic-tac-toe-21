@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/godot,macos,windows,linux,visualstudio,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=godot,macos,windows,linux,visualstudio,visualstudiocode
 
+# Android artifacts
+android/
+
 ### Godot ###
 # Godot 4+ specific ignores
 .godot/

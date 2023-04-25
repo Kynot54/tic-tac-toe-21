@@ -3,10 +3,12 @@
 [ext_resource path="res://Assets/TitleTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Dealer/DealerCard.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/PlayerButton.svg" type="Texture" id=3]
-[ext_resource path="res://Dealer/DealerMarginContainer.gd" type="Script" id=4]
+[ext_resource path="res://Nodes/card_stack/card_stack.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Images/Player_Button_Active.svg" type="Texture" id=5]
 
-[node name="Dealer" type="Node"]
+[node name="Dealer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="ColorRectBackground" type="ColorRect" parent="."]
@@ -24,34 +26,34 @@ margin_bottom = -50.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 4 )
 
 [node name="DealerButtonContainer" type="VBoxContainer" parent="DealerMarginContainer"]
 margin_right = 980.0
 margin_bottom = 1820.0
-size_flags_horizontal = 5
-size_flags_vertical = 5
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_right = 980.0
 margin_bottom = 201.0
+disabled = true
 action_mode = 0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
 
-[node name="CardCenter" type="CenterContainer" parent="DealerMarginContainer"]
-margin_left = 490.0
-margin_top = 910.0
-margin_right = 490.0
-margin_bottom = 910.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="CardStack" parent="DealerMarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 205.0
+margin_right = 980.0
+margin_bottom = 1717.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scale_x = 0.65
+scale_y = 0.65
 
-[node name="CardSort" type="YSort" parent="DealerMarginContainer/CardCenter"]
-position = Vector2( 0, -205 )
-
-[node name="DealerScore" type="Label" parent="DealerMarginContainer"]
+[node name="DealerScore" type="Label" parent="DealerMarginContainer/VBoxContainer"]
 margin_top = 1721.0
 margin_right = 980.0
 margin_bottom = 1820.0
