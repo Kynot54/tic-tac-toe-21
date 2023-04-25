@@ -59,13 +59,6 @@ const CARD_DECK = [
 	{"rank" : "Ace", "suit": "Diamonds", "value": 11, "sprite": "res://Assets/Cards/Tiles_A_white.png"}
 ]
 
-var player_score = 0
-var dealer_score = 0
-var player_hit = false
-var player1_win = false
-var player2_win = false
-var end = false
-var new_round = true
 var player_hand = []
 var dealer_hand = []
 var deck: Array
@@ -73,20 +66,12 @@ var deck: Array
 func _ready():
 	deck = CARD_DECK.duplicate()
 	deck.shuffle()
-	#shuffle_deck()
 
 
 ## Reset the 21 game state to the initial state
 func reset():
 	deck = CARD_DECK.duplicate()
 	deck.shuffle()
-	player_score = 0
-	dealer_score = 0
-	player_hit = false
-	player1_win = false
-	player2_win = false
-	end = false
-	new_round = true
 	player_hand.clear()
 	dealer_hand.clear()
 
@@ -100,4 +85,4 @@ func shuffle_deck():
 		var temp = deck[i]
 		deck[i] = deck[j]
 		deck[j] = temp
-    
+	
