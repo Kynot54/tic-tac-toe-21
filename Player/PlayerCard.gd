@@ -54,6 +54,7 @@ func _on_Stand_pressed():
 
 func _on_DealerButton_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	gVar.previewing_deck = true
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 
 

@@ -36,7 +36,6 @@ size_flags_vertical = 3
 [node name="PlayerButton" type="TextureButton" parent="DealerMarginContainer/DealerButtonContainer"]
 margin_right = 980.0
 margin_bottom = 201.0
-disabled = true
 action_mode = 0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )

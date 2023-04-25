@@ -3,12 +3,15 @@ extends Control
 onready var card_stack := $DealerMarginContainer/DealerButtonContainer/CardStack
 onready var _score_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/DealerScore
 onready var _prompt_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/StatePrompt
+onready var _player_button := $DealerMarginContainer/DealerButtonContainer/PlayerButton
 onready var rng = RandomNumberGenerator.new()
 
 
 func _ready():
 	rng.randomize()
-
+	
+	_player_button.visible = gVar.previewing_deck
+	
 	if gVar.new_round == true:
 		self.card_stack.clear()
 		for _i in range(2):
@@ -19,20 +22,27 @@ func _ready():
 		self.card_stack.set_deck(Deck.dealer_hand)
 
 	_score_label.text = str("Dealer Score: ", gVar.dealer_score)
-
-	if should_dealer_hit():
-		_prompt_label.text = "Dealer Hits!"
-		yield(get_tree().create_timer(1), "timeout")
-		deal_dealer_card()
-		yield(get_tree().create_timer(1), "timeout")
+	
+	if gVar.previewing_deck:
+		gVar.previewing_deck = false
+		_prompt_label.text = ""
 	else:
-		_prompt_label.text = "Dealer Stands!"
+		if should_dealer_hit():
+			_prompt_label.text = "Dealer Hits!"
+			yield(get_tree().create_timer(1), "timeout")
+			deal_dealer_card()
+			yield(get_tree().create_timer(1), "timeout")
+		else:
+			_prompt_label.text = "Dealer Stands!"
 
-	yield(get_tree().create_timer(1), "timeout")
-	$DealerMarginContainer/DealerButtonContainer/PlayerButton.disabled = false
+		yield(get_tree().create_timer(1), "timeout")
 
-	if gVar.end == true:
-		determine_win()
+		if gVar.end == true:
+			determine_win()
+		else:
+			_prompt_label.text = "Continue!"
+			yield(get_tree().create_timer(1), "timeout")
+			Transit.change_scene("res://Player/PlayerCard.tscn")
 
 
 func deal_dealer_card():
@@ -58,9 +68,9 @@ func determine_dealer_actions():
 
 
 func should_dealer_hit():
-	var t = rng.randi_range(0, 1)
+	var t = rng.randi_range(0, 3)
 
-	return gVar.dealer_score <= 16 and t == 1
+	return gVar.dealer_score <= 16 and t < 3
 
 
 func determine_win():
@@ -93,7 +103,7 @@ func determine_win():
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")
-			Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
+			Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
 		else:
 			_prompt_label.text = "Dealer Wins!"
