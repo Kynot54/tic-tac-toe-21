@@ -44,9 +44,6 @@ texture_hover = ExtResource( 5 )
 [node name="CardStack" parent="DealerMarginContainer/DealerButtonContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 205.0
-margin_right = 980.0
-margin_bottom = 1717.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scale_x = 0.65

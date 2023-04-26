@@ -7,9 +7,9 @@ onready var buttons = $MarginContainer/CenterContainer/TicTacToeGrid/ButtonLayer
 
 func _ready():
 	self.TicTacToeBoard.init_grid()
-	if gVar.player1_win == true:
+	if gVar.player_win == true:
 		player_move()
-	elif gVar.player2_win == true:
+	else:
 		ai_move()
 
 

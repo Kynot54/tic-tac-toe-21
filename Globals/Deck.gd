@@ -215,13 +215,3 @@ func reset():
 	deck.shuffle()
 	player_hand.clear()
 	dealer_hand.clear()
-
-#func shuffle_deck():
-#	# Using Richard Durstenfeld's version of the Fisher-Yates Shuffle
-#	for i in range(len(deck) - 1):
-#		var rng = RandomNumberGenerator.new()
-#		rng.randomize()
-#		var j = rng.randi_range(0, 51)
-#		var temp = deck[i]
-#		deck[i] = deck[j]
-#		deck[j] = temp

@@ -1,7 +1,9 @@
 extends Node
 onready var card_stack := $PlayerMarginContainer/Player21Container/CardStack
 onready var _score_label := $PlayerMarginContainer/Player21Container/ScoreLabel
-
+onready var dealer_button := $PlayerMarginContainer/Player21Container/DealerButton
+onready var hit_button := $PlayerMarginContainer/Player21Container/PlayerButtonsContainter/Hit
+onready var stand_button := $PlayerMarginContainer/Player21Container/PlayerButtonsContainter/Stand
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,20 +36,22 @@ func _on_Hit_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
 
 	deal_player_card()
-	gVar.player_hit = true
+	_score_label.text = str("Score: ", gVar.player_score)
 	if gVar.player_score >= 21:
 		gVar.end = true
-
-	_score_label.text = str("Score: ", gVar.player_score)
-
-	$PlayerMarginContainer/Player21Container/PlayerButtonsContainter/Hit.disabled = true
-	yield(get_tree().create_timer(1), "timeout")
-	Transit.change_scene("res://Dealer/DealerCard.tscn")
+		hit_button.disabled = true
+		stand_button.disabled = true
+		dealer_button.disabled = true	
+		yield(get_tree().create_timer(1), "timeout")
+		Transit.change_scene("res://Dealer/DealerCard.tscn")
 
 
 func _on_Stand_pressed():
 	gVar.end = true
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
+	hit_button.disabled = true
+	stand_button.disabled = true
+	dealer_button.disabled = true	
 	yield(get_tree().create_timer(1), "timeout")
 	Transit.change_scene("res://Dealer/DealerCard.tscn")
 

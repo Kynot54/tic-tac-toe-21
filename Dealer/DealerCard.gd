@@ -65,40 +65,24 @@ func should_dealer_hit():
 
 func determine_win():
 	if gVar.end == true:
-		if gVar.player_score > gVar.dealer_score and gVar.player_score <= 21:
+		if (gVar.player_score > gVar.dealer_score and gVar.player_score <= 21) or (gVar.dealer_score > 21 and gVar.player_score <= 21):
 			_prompt_label.text = "Player Wins!"
-
-			gVar.player1_win = true
+			
+			gVar.player_win = true
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")
 			Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 			Transit.change_scene("res://TicTacToe/TicTac.tscn")
-		elif gVar.player_score == gVar.dealer_score:
+		elif gVar.player_score == gVar.dealer_score or (gVar.player_score > 21 and gVar.dealer_score > 21):
 			_prompt_label.text = "Tie!"
 
 			gVar.new_round = true
 			yield(get_tree().create_timer(1), "timeout")
 			Transit.change_scene("res://Player/PlayerCard.tscn")
-		elif gVar.player_score > 21 and gVar.dealer_score > 21:
-			_prompt_label.text = "Tie!"
-
-			gVar.new_round = true
-			yield(get_tree().create_timer(1), "timeout")
-			Transit.change_scene("res://Player/PlayerCard.tscn")
-		elif gVar.dealer_score > 21 and gVar.player_score <= 21:
-			_prompt_label.text = "Player Wins!"
-
-			gVar.player1_win = true
-			gVar.new_round = true
-			Board.return_to = "res://Player/PlayerCard.tscn"
-			yield(get_tree().create_timer(1), "timeout")
-			Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
-			Transit.change_scene("res://TicTacToe/TicTac.tscn")
-		else:
+		elif (gVar.dealer_score > gVar.player_score and gVar.dealer_score <= 21) or (gVar.player_score > 21 and gVar.dealer_score <= 21):
 			_prompt_label.text = "Dealer Wins!"
 
-			gVar.player2_win = true
 			gVar.new_round = true
 			Board.return_to = "res://Player/PlayerCard.tscn"
 			yield(get_tree().create_timer(1), "timeout")

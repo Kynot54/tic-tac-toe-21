@@ -47,9 +47,6 @@ texture_hover = ExtResource( 6 )
 [node name="CardStack" parent="PlayerMarginContainer/Player21Container" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 205.0
-margin_right = 980.0
-margin_bottom = 1185.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scale_x = 0.65
