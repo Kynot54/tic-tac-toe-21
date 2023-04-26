@@ -102,6 +102,5 @@ func play_button_click(button_type = null):
 		ButtonType.TICTACTOE_BUTTON:
 			_se_player.stream = _tictactoe_button_click
 			_se_player.play()
-		_:
 			_se_player.stream = _title_button_click
 			_se_player.play()

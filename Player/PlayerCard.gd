@@ -9,7 +9,7 @@ onready var stand_button := $PlayerMarginContainer/Player21Container/PlayerButto
 func _ready():
 	if gVar.new_round == true:
 		reset_deck()
-		gVar.reset_hands()
+		gVar.reset()
 		self.card_stack.clear()
 		for _i in range(2):
 			deal_player_card()
