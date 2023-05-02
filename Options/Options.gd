@@ -18,7 +18,7 @@ func _ready():
 
 
 # Returns to the title screen
-func _on_Button_pressed():
+func _on_BackButton_pressed():
 	Music.play_button_click(Music.ButtonType.TITLE_BUTTON)
 	Transit.change_scene("res://Title/Main.tscn")
 
@@ -30,3 +30,8 @@ func _on_BGMSlider_value_changed(value):
 # sets the SE volume when the slider's value changes
 func _on_SESlider_value_changed(value):
 	Music.se_volume = linear2db(value)
+
+
+func _on_ResetButton_pressed():
+	bgm_slider.value = 1.0
+	se_slider.value = 1.0

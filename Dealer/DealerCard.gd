@@ -1,72 +1,90 @@
-extends Node
+extends Control
+
+onready var card_stack := $DealerMarginContainer/DealerButtonContainer/CardStack
+onready var _score_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/DealerScore
+onready var _prompt_label := $DealerMarginContainer/DealerButtonContainer/FooterLabels/StatePrompt
+onready var _player_button := $DealerMarginContainer/DealerButtonContainer/PlayerButton
+
 
 func _ready():
-	var _temp = self.connect("script_changed", $DealerMarginContainer, "update_score")
-	emit_signal("script_changed", Deck.dealer_score)
-	if Deck.new_round == true:
+	_player_button.visible = gVar.previewing_deck
+	
+	if gVar.new_round == true:
+		self.card_stack.clear()
 		for _i in range(2):
 			deal_dealer_card()
-		Deck.new_round = false
-	yield(get_tree().create_timer(1), "timeout")
-	determine_dealer_actions()
-	if Deck.end == true:
-		determine_win()
+		gVar.new_round = false
+	else:
+		self.card_stack.clear()
+		self.card_stack.set_deck(Deck.dealer_hand)
+
+	_score_label.text = str("Dealer Score: ", gVar.dealer_score)
+	
+	if gVar.previewing_deck:
+		gVar.previewing_deck = false
+		_prompt_label.text = ""
+	else:
+		if should_dealer_hit():
+			_prompt_label.text = "Dealer Hits!"
+			yield(get_tree().create_timer(1), "timeout")
+			deal_dealer_card()
+			yield(get_tree().create_timer(1), "timeout")
+		else:
+			_prompt_label.text = "Dealer Stands!"
+
+		yield(get_tree().create_timer(1), "timeout")
+
+		if gVar.end == true:
+			determine_win()
+		else:
+			_prompt_label.text = "Continue!"
+			yield(get_tree().create_timer(1), "timeout")
+			Transit.change_scene("res://Player/PlayerCard.tscn")
+
 
 func deal_dealer_card():
 	if Deck.deck:
 		var card_to_be_dealt = Deck.deck.pop_back()
-		Deck.dealer_score += card_to_be_dealt["value"]
-		emit_signal("script_changed", Deck.dealer_score)
+		gVar.dealer_score += card_to_be_dealt["value"]
 		Deck.dealer_hand.append(card_to_be_dealt)
-		var card_sprite = Sprite.new()
-		card_sprite.texture = load(card_to_be_dealt["sprite"])
-		card_sprite.scale = Vector2(0.75,0.75)
-		var posY = 1200
-		for card in Deck.dealer_hand.size():
-			posY = int(posY - 90.125)
-			card_sprite.position = Vector2(480,posY)
-		# Determine how to overlay cards in a manner similar to player
-		$DealerMarginContainer/CardSort.add_child(card_sprite)
-		card_sprite.owner = self
+
+		self.card_stack.push_back(card_to_be_dealt)
+		_score_label.text = str("Dealer Score: ", gVar.dealer_score)
 
 
 func _on_PlayerButton_pressed():
 	Music.play_button_click(Music.ButtonType.TWENTYONE_BUTTON)
-	save_sprites()
-	yield(get_tree().create_timer(2), "timeout")
 	Transit.change_scene("res://Player/PlayerCard.tscn")
-	
-func determine_dealer_actions():
-	if Deck.player_hit == true:
-		if Deck.dealer_score <= 16:
-			deal_dealer_card()
-			Deck.player_hit = false
-	Deck.player_hit = false
-			
+
+
+func should_dealer_hit():
+	var t = randi() % 4
+
+	return gVar.dealer_score <= 16 and t < 3
+
+
 func determine_win():
-	if Deck.end == true:
-		if Deck.player_score > Deck.dealer_score and Deck.player_score <= 21:
-			Deck.player1_win = true
-			Board.return_to = "res://Player/PlayerCard.tscn"
-			Deck.new_round = true
-			Transit.change_scene("res://TicTacToe/TicTac.tscn")
-		elif Deck.player_score == Deck.dealer_score or Deck.player_score > 21 and Deck.dealer_score > 21:
-			Deck.new_round = true
-			Transit.change_scene("res://Player/PlayerCard.tscn")
-		elif Deck.player_score > 21 and Deck.dealer_score > 21:
-			Deck.new_round = true
-			Transit.change_scene("res://Player/PlayerCard.tscn")
-		else:
-			Deck.player2_win = true
-			Deck.new_round = true
-			Board.return_to = "res://Player/PlayerCard.tscn"
-			Transit.change_scene("res://TicTacToe/TicTac.tscn")
+	if gVar.end == true:
+		if (gVar.player_score > gVar.dealer_score and gVar.player_score <= 21) or (gVar.dealer_score > 21 and gVar.player_score <= 21):
+			_prompt_label.text = "Player Wins!"
 			
-func save_sprites():
-	var card_scene = PackedScene.new()
-	var saved_scene = card_scene.pack(self)
-	if saved_scene == OK:
-		var error = ResourceSaver.save("res://Dealer/DealerCard.tscn",card_scene)
-		if  error != OK:
-			push_error("An error has occured.")
-	
+			gVar.player_win = true
+			gVar.new_round = true
+			Board.return_to = "res://Player/PlayerCard.tscn"
+			yield(get_tree().create_timer(1), "timeout")
+			Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
+			Transit.change_scene("res://TicTacToe/TicTac.tscn")
+		elif gVar.player_score == gVar.dealer_score or (gVar.player_score > 21 and gVar.dealer_score > 21):
+			_prompt_label.text = "Tie!"
+
+			gVar.new_round = true
+			yield(get_tree().create_timer(1), "timeout")
+			Transit.change_scene("res://Player/PlayerCard.tscn")
+		elif (gVar.dealer_score > gVar.player_score and gVar.dealer_score <= 21) or (gVar.player_score > 21 and gVar.dealer_score <= 21):
+			_prompt_label.text = "Dealer Wins!"
+
+			gVar.new_round = true
+			Board.return_to = "res://Player/PlayerCard.tscn"
+			yield(get_tree().create_timer(1), "timeout")
+			Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
+			Transit.change_scene("res://TicTacToe/TicTac.tscn")

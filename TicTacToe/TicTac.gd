@@ -7,31 +7,37 @@ onready var buttons = $MarginContainer/CenterContainer/TicTacToeGrid/ButtonLayer
 
 func _ready():
 	self.TicTacToeBoard.init_grid()
-	if Deck.player1_win == true:
+	if gVar.player_win == true:
 		player_move()
-	elif Deck.player2_win == true:
+	else:
 		ai_move()
 
+
 func _on_ChangePlayerButton_pressed():
-	if Board.game_state != Board.TicTacToeGameState.IN_PROGRESS:
+	if Board.game_state != Board.TTTGameState.IN_PROGRESS:
 		return
-	
-	if Board.round_state == Board.TicTacToeRoundState.IDLE or Board.round_state == Board.TicTacToeRoundState.PLAYER_2_PICKING:
+
+	if (
+		Board.round_state == Board.TTTRoundState.IDLE
+		or Board.round_state == Board.TTTRoundState.PLAYER_2_PICKING
+	):
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Picking"
-		Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+		Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 	else:
 		$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
-		Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+		Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
+
 
 func player_move():
-	Board.round_state = Board.TicTacToeRoundState.PLAYER_1_PICKING
+	Board.round_state = Board.TTTRoundState.PLAYER_1_PICKING
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Picking"
-	
+
 	yield(self.TicTacToeBoard, "onSquareSelected")
 	yield(get_tree().create_timer(2), "timeout")
 
+
 func ai_move():
-	Board.round_state = Board.TicTacToeRoundState.PLAYER_2_PICKING
+	Board.round_state = Board.TTTRoundState.PLAYER_2_PICKING
 	for i in buttons.size():
 		buttons[i].set_mouse_filter(2)
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Picking"
@@ -40,11 +46,14 @@ func ai_move():
 	#print("picking square %s" % cpu_move)
 	$MarginContainer/CenterContainer/TicTacToeGrid.select_square(cpu_move)
 
+
 func _on_TicTacToeGrid_onPlayer_1_win():
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 1 Wins!"
 
+
 func _on_TicTacToeGrid_onPlayer_2_win():
 	$MarginContainer/DebugItems/StatusLabel.text = "Player 2 Wins!"
+
 
 func _on_TicTacToeGrid_onTie():
 	$MarginContainer/DebugItems/StatusLabel.text = "Tie :("

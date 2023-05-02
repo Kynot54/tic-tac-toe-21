@@ -14,20 +14,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Globals/Music.gd"
 }, {
+"base": "Control",
+"class": "CardStack",
+"language": "GDScript",
+"path": "res://Nodes/card_stack/card_stack.gd"
+}, {
+"base": "Node",
+"class": "TTTState",
+"language": "GDScript",
+"path": "res://Globals/TicTacToeBoard.gd"
+}, {
 "base": "Node",
 "class": "TicTacToeGrid",
 "language": "GDScript",
 "path": "res://TicTacToe/TicTacToeGrid.gd"
-}, {
-"base": "Node",
-"class": "TicTacToeSceneState",
-"language": "GDScript",
-"path": "res://Globals/TicTacToeBoard.gd"
 } ]
 _global_script_class_icons={
 "BGM_SE_Player": "",
-"TicTacToeGrid": "",
-"TicTacToeSceneState": ""
+"CardStack": "",
+"TTTState": "",
+"TicTacToeGrid": ""
 }
 
 [application]
@@ -37,9 +43,10 @@ run/main_scene="res://Title/Main.tscn"
 
 [autoload]
 
+Transit="*res://addons/transit/Transit.tscn"
 Deck="*res://Globals/Deck.gd"
+gVar="*res://Globals/gVar.gd"
 Board="*res://Globals/TicTacToeBoard.tscn"
-Transit="*res://Globals/addons/transit/Transit.tscn"
 Music="*res://Globals/Music.tscn"
 
 [display]
@@ -54,10 +61,6 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PoolStringArray(  )
-
-[global]
-
-grid=true
 
 [gui]
 
@@ -78,7 +81,3 @@ pointing/emulate_touch_from_mouse=true
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
