@@ -141,6 +141,10 @@ bbcode_text = "[center]by [img=250]res://Assets/Images/wordart/ethan lew.png[/im
 text = "by , , and "
 fit_content_height = true
 
+[node name="ResizeTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="resized" from="." to="." method="_on_MainMenu_resized"]
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/StartButtonCard" to="." method="_on_StartButtonCard_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenuContainer/ButtonsHBox/OptionsButtonCard" to="." method="_on_OptionsButtonCard_pressed"]

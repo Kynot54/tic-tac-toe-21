@@ -30,6 +30,13 @@ func _on_OptionsButtonCard_pressed():
 
 
 func _on_MainMenu_resized():
+	# prevent updating the logo too often so the game doesn't stutter
+	if $ResizeTimer.is_stopped():
+		$ResizeTimer.start()
+		yield($ResizeTimer, "timeout")
+	else:
+		return
+
 	var logo = $MarginContainer/MainMenuContainer/PanelContainer/Logo
 	var logo_container = $MarginContainer/MainMenuContainer/PanelContainer
 	var logo_container_center = logo_container.get_global_transform().get_origin()
