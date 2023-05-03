@@ -62,7 +62,8 @@ func _exit_tree():
 ## if using a slider to modify the volume, convert linear to
 ## decibels using linear2db()
 func _set_bgm_volume(new_volume):
-	_bgm_player.volume_db = new_volume
+	print(new_volume)
+	AudioServer.set_bus_volume_db(1, new_volume)
 	_config.set_value("audio", "bgm_volume_db", new_volume)
 
 
@@ -77,7 +78,7 @@ func _get_bgm_volume():
 ## if using a slider to modify the volume, convert linear to
 ## decibels using linear2db()
 func _set_se_volume(new_volume):
-	_se_player.volume_db = new_volume
+	AudioServer.set_bus_volume_db(2, new_volume)
 	_config.set_value("audio", "se_volume_db", new_volume)
 
 
