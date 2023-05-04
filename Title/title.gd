@@ -1,7 +1,7 @@
 extends Control
 
 # app semver
-var version = "1.5.3"
+var version = "1.0"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
