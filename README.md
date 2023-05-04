@@ -15,6 +15,7 @@ Export templates for Android and Web are included with this project. To build th
 ## Attribution
 tic-tac-toe-21 uses the following external libraries and content:
 
+ - [Godot 3.5.2 Game Engine](https://godotengine.org/) by Godot (MIT)
  - [transit](https://github.com/backwardspy/transit) by backwardspy (MIT)
- - [UI Audio](https://www.kenney.nl/assets/ui-audio) by Kenney
+ - [UI Audio](https://www.kenney.nl/assets/ui-audio) by Kenney (CC0)
  - [Music](https://pixabay.com/music/modern-classical-relaxing-145038/) by Music_For_Videos (CC0)
