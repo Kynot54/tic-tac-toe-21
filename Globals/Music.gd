@@ -70,7 +70,7 @@ func _set_bgm_volume(new_volume):
 ## if using this value to set a slider's value,
 ## first call db2linear() on the returned value
 func _get_bgm_volume():
-	return _bgm_player.volume_db
+	return AudioServer.get_bus_volume_db(1)
 
 
 ## Set bgm volume in decibels
@@ -85,7 +85,7 @@ func _set_se_volume(new_volume):
 ## if using this value to set a slider's value,
 ## first call db2linear() on the returned value
 func _get_se_volume():
-	return _se_player.volume_db
+	return AudioServer.get_bus_volume_db(2)
 
 
 ## Play a button click sound effect
