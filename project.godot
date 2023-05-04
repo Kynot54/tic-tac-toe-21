@@ -40,6 +40,9 @@ _global_script_class_icons={
 
 config/name="tic-tac-toe-21"
 run/main_scene="res://Title/Main.tscn"
+config/icon="res://Assets/App Icon/icon-144.png"
+config/macos_native_icon="res://Assets/App Icon/icon-mac.icns"
+config/windows_native_icon="res://Assets/App Icon/icon_win.ico"
 
 [autoload]
 
