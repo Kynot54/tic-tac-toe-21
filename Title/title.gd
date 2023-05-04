@@ -34,15 +34,16 @@ func _on_MainMenu_resized():
 	if $ResizeTimer.is_stopped():
 		$ResizeTimer.start()
 		yield($ResizeTimer, "timeout")
+		var logo = $MarginContainer/MainMenuContainer/PanelContainer/Logo
+		var logo_container = $MarginContainer/MainMenuContainer/PanelContainer
+		var logo_container_center = logo_container.get_global_transform().get_origin()
+		
+		logo_container_center.x += logo_container.rect_size.x/2
+		logo_container_center.y += logo_container.rect_size.y/2
+		
+		logo.rect_pivot_offset.x = logo_container_center.x
+		logo.rect_pivot_offset.y = logo_container_center.y
 	else:
 		return
 
-	var logo = $MarginContainer/MainMenuContainer/PanelContainer/Logo
-	var logo_container = $MarginContainer/MainMenuContainer/PanelContainer
-	var logo_container_center = logo_container.get_global_transform().get_origin()
 	
-	logo_container_center.x += logo_container.rect_size.x/2
-	logo_container_center.y += logo_container.rect_size.y/2
-	
-	logo.rect_pivot_offset.x = logo_container_center.x
-	logo.rect_pivot_offset.y = logo_container_center.y
