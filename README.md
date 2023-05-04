@@ -15,5 +15,6 @@ Export templates for Android and Web are included with this project. To build th
 ## Attribution
 tic-tac-toe-21 uses the following external libraries and content:
 
- - [transit](https://github.com/backwardspy/transit) by backwardspy
+ - [transit](https://github.com/backwardspy/transit) by backwardspy (MIT)
  - [UI Audio](https://www.kenney.nl/assets/ui-audio) by Kenney
+ - [Music](https://pixabay.com/music/modern-classical-relaxing-145038/) by Music_For_Videos (CC0)
