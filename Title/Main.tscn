@@ -68,27 +68,27 @@ color = Color( 0.709804, 0.709804, 0.709804, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
-margin_top = 50.0
+margin_top = 100.0
 margin_right = -50.0
-margin_bottom = -50.0
+margin_bottom = -100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenuContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 980.0
-margin_bottom = 1820.0
+margin_bottom = 1720.0
 size_flags_horizontal = 3
 custom_constants/separation = 50
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainMenuContainer"]
 margin_right = 980.0
-margin_bottom = 770.0
+margin_bottom = 720.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 5 )
 
 [node name="Logo" type="TextureRect" parent="MarginContainer/MainMenuContainer/PanelContainer"]
 margin_right = 980.0
-margin_bottom = 770.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
@@ -96,14 +96,14 @@ expand = true
 stretch_mode = 6
 
 [node name="ButtonsHBox" type="HBoxContainer" parent="MarginContainer/MainMenuContainer"]
-margin_top = 820.0
+margin_top = 770.0
 margin_right = 980.0
-margin_bottom = 1591.0
+margin_bottom = 1491.0
 size_flags_vertical = 3
 
 [node name="StartButtonCard" type="TextureButton" parent="MarginContainer/MainMenuContainer/ButtonsHBox"]
 margin_right = 488.0
-margin_bottom = 771.0
+margin_bottom = 721.0
 size_flags_horizontal = 3
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 2 )
@@ -114,7 +114,7 @@ stretch_mode = 5
 [node name="OptionsButtonCard" type="TextureButton" parent="MarginContainer/MainMenuContainer/ButtonsHBox"]
 margin_left = 492.0
 margin_right = 980.0
-margin_bottom = 771.0
+margin_bottom = 721.0
 size_flags_horizontal = 3
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 8 )
@@ -123,18 +123,18 @@ expand = true
 stretch_mode = 5
 
 [node name="Version Label" type="Label" parent="MarginContainer/MainMenuContainer"]
-margin_top = 1641.0
+margin_top = 1541.0
 margin_right = 980.0
-margin_bottom = 1691.0
+margin_bottom = 1591.0
 theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 4 )
 text = "version x.y.z"
 align = 1
 
 [node name="AuthorRichTextLabel" type="RichTextLabel" parent="MarginContainer/MainMenuContainer"]
-margin_top = 1741.0
+margin_top = 1641.0
 margin_right = 980.0
-margin_bottom = 1820.0
+margin_bottom = 1720.0
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]by [img=250]res://Assets/Images/wordart/ethan lew.png[/img], [img=250]res://Assets/Images/wordart/ugo ndupu.png[/img], and [img=300]res://Assets/Images/wordart/kyle whynott.png[/img][/center]"

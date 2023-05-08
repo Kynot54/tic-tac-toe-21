@@ -75,6 +75,7 @@ func select_square(position):
 				self.emit_signal("onPlayer_2_win")
 				Board.game_state = Board.TTTGameState.PLAYER_2_WIN
 				Board.round_state = Board.TTTRoundState.IDLE
+				yield(get_tree().create_timer(2.0), "timeout")
 				Board.reset()
 				Transit.change_scene("res://Title/Main.tscn")
 			else:
