@@ -24,7 +24,7 @@ tic-tac-toe-21 uses the following external libraries and content:
 
 ### For Android
  - On https://www.github.com or the github mobile application navigate to... https://github.com/Kynot54/tic-tac-toe-21/releases/tag/v.101
- - Click on the Download option on the 21MarkstheSpot.apk file
+ - Click on the Download option on the **21MarkstheSpot.apk** file
  - When a pop-up comes up to download select the 'Download' Option
 
 ### For iPhone 
