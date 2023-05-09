@@ -19,3 +19,14 @@ tic-tac-toe-21 uses the following external libraries and content:
  - [transit](https://github.com/backwardspy/transit) by backwardspy (MIT)
  - [UI Audio](https://www.kenney.nl/assets/ui-audio) by Kenney (CC0)
  - [Music](https://pixabay.com/music/modern-classical-relaxing-145038/) by Music_For_Videos (CC0)
+
+## Installation Instructions
+
+### For Android
+ - On https://www.github.com or the github mobile application navigate to... https://github.com/Kynot54/tic-tac-toe-21/releases/tag/v.101
+ - Click on the Download option on the 21MarkstheSpot.apk file
+ - When a pop-up comes up to download select the 'Download' Option
+
+### For iPhone 
+ - For iPhone on **Safari** navigate to our gihub pages project deployment at... https://kynot54.github.io/tic-tac-toe-21/
+ - This will pull up a desktop version of the game; however, if you click on the share button (box with an up arrow); scroll down and select the add to homescreen option it will add the application to iOS as a Progressive Web App
