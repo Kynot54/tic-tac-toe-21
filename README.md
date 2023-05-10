@@ -1,5 +1,5 @@
 
-# tic-tac-toe-21
+# 21 Marks the Spot
 CPSC 362 S23 Semester Project, by [Ethan Lew](https://github.com/ethanl21), [Ugo Ndupu](https://github.com/Ugondupu), and [Kyle Whynott](https://github.com/Kynot54).
 
 ## Brief
